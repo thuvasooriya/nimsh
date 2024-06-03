@@ -21,8 +21,11 @@ M.treesitter = {
     'fish',
     'gitignore',
     'nix',
+    'just',
+    'make',
     'verilog',
     'toml',
+    'yaml',
     'kdl',
     -- lll
     'cpp',

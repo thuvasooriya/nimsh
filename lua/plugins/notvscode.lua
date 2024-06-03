@@ -24,6 +24,68 @@ return {
       require('better_escape').setup()
     end,
   },
+  -- {
+  --   'chomosuke/typst-preview.nvim',
+  --   ft = 'typst',
+  --   version = '0.3.*',
+  --   build = function()
+  --     require('typst-preview').update()
+  --   end,
+  -- },
+
+  -- {
+  --   'linux-cultist/venv-selector.nvim',
+  --   dependencies = {
+  --     'neovim/nvim-lspconfig',
+  --     'mfussenegger/nvim-dap',
+  --     'mfussenegger/nvim-dap-python', --optional
+  --     { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+  --   },
+  --   lazy = false,
+  --   branch = 'regexp', -- This is the regexp branch, use this for the new version
+  --   config = function()
+  --     require('venv-selector').setup()
+  --   end,
+  --   keys = {
+  --     -- Keymap to open VenvSelector to pick a venv.
+  --     { '<leader>vs', '<cmd>VenvSelect<cr>' },
+  --     -- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
+  --     { '<leader>vc', '<cmd>VenvSelectCached<cr>' },
+  --   },
+  -- },
+  {
+    'stevearc/overseer.nvim',
+    opts = {},
+  },
+  {
+    'rcarriga/nvim-notify',
+    opts = {},
+  },
+  { 'rcarriga/nvim-dap-ui', dependencies = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio' } },
+  {
+    'mfussenegger/nvim-dap',
+    opts = {},
+  },
+  {
+    'stevearc/dressing.nvim',
+    opts = {},
+  },
+  {
+    'anurag3301/nvim-platformio.lua',
+    dependencies = {
+      { 'akinsho/nvim-toggleterm.lua' },
+      { 'nvim-telescope/telescope.nvim' },
+      { 'nvim-lua/plenary.nvim' },
+    },
+    cmd = {
+      'Pioinit',
+      'Piorun',
+      'Piocmd',
+      'Piolib',
+      'Piomon',
+      'Piodebug',
+    },
+  },
 
   {
     'stevearc/conform.nvim',
