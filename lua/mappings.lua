@@ -18,30 +18,23 @@ end, { desc = 'File Format with conform' })
 -- map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
 
 -- faster nav
-map({ 'n', 'v' }, 'H', '^', { noremap = true })
-map({ 'n', 'v' }, 'L', '$', { noremap = true })
-map({ 'n', 'v' }, 'J', '<C-d>', { noremap = true })
-map({ 'n', 'v' }, 'K', '<C-u>', { noremap = true }) -- mapped in lsp config also
+-- map({ 'n', 'v' }, 'H', '^', { noremap = true })
+-- map({ 'n', 'v' }, 'L', '$', { noremap = true })
+-- map({ 'n', 'v' }, 'J', '<C-d>', { noremap = true })
+-- map({ 'n', 'v' }, 'K', '<C-u>', { noremap = true }) -- mapped in lsp config also
 map('n', '<left>', '<cmd>echo "Use h to move!!"<CR>', { noremap = true })
 map('n', '<right>', '<cmd>echo "Use l to move!!"<CR>', { noremap = true })
 map('n', '<up>', '<cmd>echo "Use k to move!!"<CR>', { noremap = true })
 map('n', '<down>', '<cmd>echo "Use j to move!!"<CR>', { noremap = true })
 
+map('n', '<leader>gg', '<cmd> LazyGit <CR>', { desc = 'LazyGit Open' })
+map('n', '<leader>ls', '<cmd> Lazy sync <CR>', { desc = 'Lazy Sync Config' })
+map('n', '<leader>fp', '<cmd> Telescope neovim-project discover <CR>', { desc = 'Telescope Find projects' })
 
+-- map('n', '<leader>tt', '<cmd> tabnew <CR>', { desc = 'Tab Create new' })
+-- map('n', '<leader>tn', '<cmd> tabnext <CR>', { desc = 'Tab Switch next' })
 
-if vim.g.vscode then
-  map("n", "<leader>gg", "<Cmd>call VSCodeNotify('workbench.action.tasks.runTask', 'lazygit')<CR>")
-else
-  map('n', '<leader>gg', '<cmd> LazyGit <CR>', { desc = 'LazyGit Open' })
-  map('n', '<leader>ls', '<cmd> Lazy sync <CR>', { desc = 'Lazy Sync Config' })
-  map('n', '<leader>fp', '<cmd> Telescope neovim-project discover <CR>', { desc = 'Telescope Find projects' })
-
-  map('n', '<leader>tt', '<cmd> tabnew <CR>', { desc = 'Tab Create new' })
-  map('n', '<leader>tn', '<cmd> tabnext <CR>', { desc = 'Tab Switch next' })
-end
-
-
-map('n', '<leader>ww', '<cmd> HopWord <CR>', { desc = 'Hop' })
+-- map('n', '<leader>ww', '<cmd> HopWord <CR>', { desc = 'Hop' })
 
 -- wip code runner function
 -- TODO: cleanup, safe execution of c and cpp

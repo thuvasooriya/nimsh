@@ -98,36 +98,57 @@ M.nvimproject = {
     '~/dev/*',
   },
 }
--- M.nvimproject = {
--- 	-- scope_chdir = 'tab'
--- 	projects = {
--- 		function()
--- 			if vim.fn.has("win32") == 1 then
--- 			-- Windows configuration
--- 			-- vim.cmd("source C:/path/to/windows/config.lua")
--- 			elseif vim.fn.has("mac") == 1 then
--- 				-- macOS configuration
--- 				-- vim.cmd("source /path/to/mac/config.lua")
--- 				return {
--- 					"~/arc/pro/code/pydev/*",
--- 					"~/arc/pro/code/hdl/*",
--- 					"~/arc/pro/code/tmp/*",
--- 					"~/arc/pro/code/lll/*dev/*",
--- 					"~/.config/*",
--- 					"~/nix/omnix/omnetpp-6.0.3/samples",
--- 					"~/nix/omnix/inet-4.5.2/examples",
--- 					"~/nix/omnix/inet-4.5.2/src/inet",
--- 				}
--- 			else
--- 				-- Linux configuration
--- 				-- vim.cmd("source /path/to/linux/config.lua")
--- 				return {
--- 					"~/.config/*",
--- 					"~/dev/*",
--- 				}
--- 			end
--- 		end,
--- 	},
--- }
+M.harpoon_keys = {
+  {
+    '<leader>A',
+    function()
+      require('harpoon'):list():add()
+    end,
+    desc = 'harpoon file',
+  },
+  {
+    '<leader>a',
+    function()
+      local harpoon = require 'harpoon'
+      harpoon.ui:toggle_quick_menu(harpoon:list())
+    end,
+    desc = 'harpoon quick menu',
+  },
+  {
+    '<leader>1',
+    function()
+      require('harpoon'):list():select(1)
+    end,
+    desc = 'harpoon to file 1',
+  },
+  {
+    '<leader>2',
+    function()
+      require('harpoon'):list():select(2)
+    end,
+    desc = 'harpoon to file 2',
+  },
+  {
+    '<leader>3',
+    function()
+      require('harpoon'):list():select(3)
+    end,
+    desc = 'harpoon to file 3',
+  },
+  {
+    '<leader>4',
+    function()
+      require('harpoon'):list():select(4)
+    end,
+    desc = 'harpoon to file 4',
+  },
+  {
+    '<leader>5',
+    function()
+      require('harpoon'):list():select(5)
+    end,
+    desc = 'harpoon to file 5',
+  },
+}
 
 return M

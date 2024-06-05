@@ -6,35 +6,23 @@ vim.g.have_nerd_font = true
 vim.opt.cursorline = true
 vim.opt.inccommand = 'split'
 
-ENABLE_MASON = true
-
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 
+---@diagnostic disable-next-line: undefined-field
 if not vim.loop.fs_stat(lazypath) then
   local repo = 'https://github.com/folke/lazy.nvim.git'
   vim.fn.system { 'git', 'clone', '--filter=blob:none', repo, '--branch=stable', lazypath }
 end
 
+---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 local lazy_config = require 'configs.lazy'
 
 -- load plugins
 require('lazy').setup({
-  {
-    import = 'plugins.notvscode',
-    cond = function()
-      return not vim.g.vscode
-    end
-  },
-  { import = 'plugins', cond = true },
-  {
-    import = 'plugins.vscode',
-    cond = function()
-      return vim.g.vscode
-    end
-  },
+  { import = 'plugins' },
 }, lazy_config)
 
 -- load theme

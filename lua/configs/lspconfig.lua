@@ -8,7 +8,7 @@ M.on_attach = function(client, bufnr)
   local function opts(desc)
     return { buffer = bufnr, desc = desc }
   end
-  if client.name == 'ruff_lsp' then
+  if client.name == 'ruff' then
     client.server_capabilities.hoverProvider = false
   end
 
@@ -111,7 +111,7 @@ local on_attach = M.on_attach
 -- end
 
 local lspconfig = require 'lspconfig'
-local servers = { 'ruff_lsp', 'html', 'cssls', 'tsserver', 'clangd', 'zls', 'astro' }
+local servers = { 'ruff', 'html', 'cssls', 'tsserver', 'clangd', 'zls', 'astro' }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
