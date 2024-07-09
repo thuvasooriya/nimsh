@@ -1,157 +1,166 @@
-local overrides = require 'configs.overrides'
+local overrides = require "configs.overrides"
 
 return {
 
+  "nvim-lua/plenary.nvim",
+
+  "tpope/vim-sleuth", -- detect tabstop and shiftwidth automatically
   -- --------------------
   -- ui stuff
   -- --------------------
 
   {
-    'NvChad/NvChad',
+    "goolord/alpha-nvim",
+    event = "VimEnter",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = require("configs.alpha").setup,
+  },
+
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "User FilePost",
+    opts = {
+      indent = { char = "│", highlight = "IblChar" },
+      scope = { char = "│", highlight = "IblScopeChar" },
+    },
+    config = function(_, opts)
+      dofile(vim.g.base46_cache .. "blankline")
+
+      local hooks = require "ibl.hooks"
+      hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
+      require("ibl").setup(opts)
+
+      dofile(vim.g.base46_cache .. "blankline")
+    end,
+  },
+
+  { -- highlight todo, notes, etc in comments
+    "folke/todo-comments.nvim",
+    event = "VimEnter",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = { signs = true },
+  },
+
+  {
+    "nvim-tree/nvim-web-devicons",
+    opts = function()
+      return { override = require "nvchad.icons.devicons" }
+    end,
+    config = function(_, opts)
+      dofile(vim.g.base46_cache .. "devicons")
+      require("nvim-web-devicons").setup(opts)
+    end,
+  },
+
+  {
+    "nvim-tree/nvim-tree.lua",
+    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+    opts = function()
+      return require "configs.nvimtree"
+    end,
+    config = function(_, opts)
+      require("nvim-tree").setup(opts)
+    end,
+  },
+
+  {
+    "stevearc/oil.nvim",
     lazy = false,
-    branch = 'v2.5',
-    import = 'nvchad.plugins',
-    config = function()
-      require 'options'
-    end,
+    opts = {
+      view_options = {
+        show_hidden = true,
+      },
+      default_file_explorer = true,
+    },
+    -- config = function()
+    --   require('oil').setup {
+    --   }
+    -- end,
+    keys = {
+      { "-", "<cmd>Oil<cr>", desc = "open parent directory" },
+    },
   },
+  -- {
+  --   "rcarriga/nvim-notify",
+  --   opts = {},
+  -- },
+  -- {
+  --   "stevearc/dressing.nvim",
+  --   opts = {},
+  -- },
 
-  {
-    'goolord/alpha-nvim',
-    event = 'VimEnter',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = require('configs.alpha').setup,
-  },
-  {
-    'rcarriga/nvim-notify',
-    opts = {},
-  },
-  {
-    'stevearc/dressing.nvim',
-    opts = {},
-  },
-
-  -- --------------------
-  -- motions
-  -- --------------------
-
-  {
-    'max397574/better-escape.nvim',
-    -- event = 'InsertEnter',
-    lazy = false,
-    config = function()
-      require('better_escape').setup()
-    end,
-  },
-
-  {
-    'ggandor/leap.nvim',
-    dependencies = { 'tpope/vim-repeat' },
-    lazy = false,
-    config = function()
-      -- require('leap').create_default_mappings()
-      vim.keymap.set({ 'n', 'x', 'o' }, 's', '<Plug>(leap-forward)')
-      vim.keymap.set({ 'n', 'x', 'o' }, 'S', '<Plug>(leap-backward)')
-      vim.keymap.set({ 'n', 'x', 'o' }, 'gs', '<Plug>(leap-from-window)')
-    end,
-  },
-
-  {
-    'theprimeagen/harpoon',
-    branch = 'harpoon2',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      require('harpoon'):setup()
-    end,
-    keys = overrides.harpoon_keys,
-  },
+  require "plugins.motions",
+  require "plugins.nvchad",
 
   -- --------------------
   -- default stuff
   -- --------------------
   {
-    'stevearc/conform.nvim',
-    event = 'BufWritePre',
-    config = function()
-      require 'configs.conform'
+    "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+    build = ":TSUpdate",
+    opts = function()
+      return require "configs.treesitter"
+    end,
+    config = function(_, opts)
+      -- [[ configure treesitter ]] see `:help nvim-treesitter`
+      require("nvim-treesitter.install").prefer_git = true
+      ---@diagnostic disable-next-line: missing-fields
+      require("nvim-treesitter.configs").setup(opts)
+      --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
+      --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
+      --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     end,
   },
 
   {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    build = 'make',
-    config = function()
-      require('telescope').setup()
-      require('telescope').load_extension 'fzf'
-    end,
-  },
-
-  {
-    'nvim-treesitter/nvim-treesitter',
-    opts = overrides.treesitter,
-  },
-
-  {
-    'neovim/nvim-lspconfig',
-    config = function()
-      require('configs.lspconfig').defaults()
-      require 'configs.lspconfig'
-    end,
-  },
-  -- {
-  --   'dense-analysis/ale',
-  --   config = function()
-  --     -- Configuration goes here.
-  --     local g = vim.g
-  --     g.ale_linters = {
-  --       lua = { 'lua_language_server' },
-  --       verilog = { 'iverilog' },
-  --     }
-  --   end,
-  -- },
-  {
-    'nvim-tree/nvim-tree.lua',
-    cmd = {
-      'NvimTreeFocus',
-    },
-    opts = overrides.nvimtree,
-  },
-
-  {
-    'kdheepak/lazygit.nvim',
-    cmd = {
-      'LazyGit',
-      'LazyGitConfig',
-      'LazyGitCurrentFile',
-      'LazyGitFilter',
-      'LazyGitFilterCurrentFile',
-    },
+    "neovim/nvim-lspconfig",
+    -- event = "User FilePost",
     dependencies = {
-      'nvim-telescope/telescope.nvim',
-      'nvim-lua/plenary.nvim',
+      { "j-hui/fidget.nvim", opts = {} }, -- useful status updates for lsp
+      { "folke/neodev.nvim", opts = {} }, -- configures lua lsp for neovim
     },
     config = function()
-      require('telescope').load_extension 'lazygit'
+      require("configs.lspconfig").defaults()
     end,
   },
 
   {
-    'L3MON4D3/LuaSnip',
-    opts = {
-      history = true,
-      updateevents = 'TextChanged,TextChangedI',
-      enable_autosnippets = true,
-      -- store_selection_keys = "<Tab>",
+    "stevearc/conform.nvim",
+    event = "BufWritePre",
+    keys = {
+      {
+        "<leader>fm",
+        function()
+          require("conform").format { async = true, lsp_fallback = true }
+        end,
+        mode = "n",
+        desc = "[f]or[m]at buffer",
+      },
     },
+    opts = function()
+      return require "configs.conform_conf"
+    end,
+    config = function(_, opts)
+      require("conform").setup(opts)
+    end,
   },
-  -- {
-  --   'rcarriga/nvim-dap-ui',
-  --   dependencies = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio' },
-  -- },
-  -- {
-  --   'mfussenegger/nvim-dap',
-  --   opts = {},
-  -- },
+
+  {
+    "folke/which-key.nvim",
+    event = "VimEnter",
+    keys = { "<leader>", "<c-r>", "<c-w>", '"', "'", "`", "c", "v", "g" },
+    cmd = "WhichKey",
+    config = function(_, opts)
+      dofile(vim.g.base46_cache .. "whichkey")
+      require("which-key").setup(opts)
+    end,
+  },
+
+  require "plugins.git",
+  require "plugins.completions",
+  require "plugins.telescope",
 
   -- --------------------
   -- tryin stuff
@@ -161,7 +170,7 @@ return {
   --   opts = {},
   -- },
   {
-    'coffebar/neovim-project',
+    "coffebar/neovim-project",
     opts = overrides.nvimproject,
     -- init = function()
     -- enable saving the state of plugins in the session
@@ -169,100 +178,46 @@ return {
     -- vim.opt.sessionoptions:remove("tabpages")
     -- end,
     dependencies = {
-      { 'nvim-lua/plenary.nvim' },
-      { 'nvim-telescope/telescope.nvim' },
-      { 'Shatur/neovim-session-manager' },
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-telescope/telescope.nvim" },
+      { "Shatur/neovim-session-manager" },
     },
     -- lazy = false,
     -- priority = 100,
   },
 
-  -- {
-  --   'lukas-reineke/headlines.nvim',
-  --   dependencies = 'nvim-treesitter/nvim-treesitter',
-  --   config = true, -- or `opts = {}`
-  -- },
-
-  -- --------------------
-  -- typesetting
-  -- --------------------
-  --
-  -- {
-  --   'chomosuke/typst-preview.nvim',
-  --   ft = 'typst',
-  --   version = '0.3.*',
-  --   build = function()
-  --     require('typst-preview').update()
-  --   end,
-  -- },
-  {
-    'lervag/vimtex',
-    init = function()
-      vim.g.vimtex_view_method = 'skim'
-      vim.g.vimtex_syntax_enabled = 0
-      vim.g.vimtex_format_enabled = 1
-      vim.g.vimtex_compiler_method = 'tectonic'
-      -- vim.g.vimtex_compiler_method = 'generic'
-      -- vim.g.vimtex_compiler_generic = {
-      -- command = 'ls *.tex | entr -c nextonic build --keep-logs',
-      -- }
-      vim.g.vimtex_compiler_tectonic = {
-        out_dir = '../build',
-        -- hooks = [],
-        options = {
-          '-X',
-          'compile',
-          '-k',
-          '--keep-logs',
-          '--synctex',
-        },
-      }
-    end,
-    ft = 'tex',
-  },
-
-  -- --------------------
-  -- virtual envs
-  -- --------------------
-  {
-    'linux-cultist/venv-selector.nvim',
-    dependencies = {
-      'neovim/nvim-lspconfig',
-      -- 'mfussenegger/nvim-dap',
-      -- 'mfussenegger/nvim-dap-python', --optional
-      {
-        'nvim-telescope/telescope.nvim',
-        branch = '0.1.x',
-        dependencies = { 'nvim-lua/plenary.nvim' },
-      },
-    },
-    lazy = false,
-    branch = 'regexp', -- This is the regexp branch, use this for the new version
+  { -- collection of various small independent plugins/modules
+    "echasnovski/mini.nvim",
     config = function()
-      require('venv-selector').setup()
+      -- better around/inside textobjects
+      -- examples:
+      --  - va)  - [v]isually select [a]round [)]paren
+      --  - yinq - [y]ank [i]nside [n]ext [']quote
+      --  - ci'  - [c]hange [i]nside [']quote
+      require("mini.ai").setup { n_lines = 500 }
+      -- add/delete/replace surroundings (brackets, quotes, etc.)
+      -- examples:
+      -- - saiw) - [s]urround [a]dd [i]nner [w]ord [)]paren
+      -- - sd'   - [s]urround [d]elete [']quotes
+      -- - sr)'  - [s]urround [r]eplace [)] [']
+      require("mini.surround").setup()
     end,
-    keys = {
-      -- Keymap to open VenvSelector to pick a venv.
-      { '<leader>vs', '<cmd>VenvSelect<cr>' },
-      -- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
-      { '<leader>vc', '<cmd>VenvSelectCached<cr>' },
-    },
   },
 
-  {
-    'anurag3301/nvim-platformio.lua',
-    dependencies = {
-      { 'akinsho/nvim-toggleterm.lua' },
-      { 'nvim-telescope/telescope.nvim' },
-      { 'nvim-lua/plenary.nvim' },
-    },
-    cmd = {
-      'Pioinit',
-      'Piorun',
-      'Piocmd',
-      'Piolib',
-      'Piomon',
-      'Piodebug',
-    },
-  },
+  -- {
+  --   "anurag3301/nvim-platformio.lua",
+  --   dependencies = {
+  --     { "akinsho/nvim-toggleterm.lua" },
+  --     { "nvim-telescope/telescope.nvim" },
+  --     { "nvim-lua/plenary.nvim" },
+  --   },
+  --   cmd = {
+  --     "Pioinit",
+  --     "Piorun",
+  --     "Piocmd",
+  --     "Piolib",
+  --     "Piomon",
+  --     "Piodebug",
+  --   },
+  -- },
 }
