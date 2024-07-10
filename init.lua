@@ -10,8 +10,6 @@ vim.g.loaded_ruby_provider = 0
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
 
 vim.g.have_nerd_font = true
-vim.g.toggle_theme_icon = "   "
--- vim.keymap.set("", "<Space>", "<Nop>")
 
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"

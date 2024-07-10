@@ -13,6 +13,7 @@ return {
       require("better_escape").setup {
         mappings = {
           t = { j = { j = false } }, --lazygit navigation fix
+          v = { j = { k = false } },
         },
       }
     end,

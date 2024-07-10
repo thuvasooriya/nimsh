@@ -10,7 +10,7 @@ local options = {
     json = { { "biome", "prettierd" } },
     css = { { "biome", "prettierd" } },
     html = { "prettierd" },
-    md = { "prettierd" },
+    markdown = { "prettierd" },
 
     sh = { "shfmt" },
     zig = { "zigfmt" },
