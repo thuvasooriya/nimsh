@@ -25,7 +25,8 @@ local options = {
       end
     end,
     tex = { "latexindent" },
-    sv = { "verible" },
+    verilog = { "verible" },
+    systemverilog = { "verible" },
   },
   ft_parsers = {
     md = "goldmark",

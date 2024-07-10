@@ -1,9 +1,7 @@
 local overrides = require "configs.overrides"
 
 return {
-
   "nvim-lua/plenary.nvim",
-
   "tpope/vim-sleuth", -- detect tabstop and shiftwidth automatically
   -- --------------------
   -- ui stuff
@@ -39,6 +37,11 @@ return {
     event = "VimEnter",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = { signs = true },
+  },
+
+  {
+    "numToStr/Comment.nvim",
+    opts = {},
   },
 
   {
@@ -91,6 +94,11 @@ return {
 
   require "plugins.motions",
   require "plugins.nvchad",
+  require "plugins.git",
+  require "plugins.completions",
+  require "plugins.telescope",
+  require "plugins.lint",
+  -- require "plugins.debug",
 
   -- --------------------
   -- default stuff
@@ -116,7 +124,7 @@ return {
 
   {
     "neovim/nvim-lspconfig",
-    -- event = "User FilePost",
+    event = "User FilePost",
     dependencies = {
       { "j-hui/fidget.nvim", opts = {} }, -- useful status updates for lsp
       { "folke/neodev.nvim", opts = {} }, -- configures lua lsp for neovim
@@ -158,10 +166,6 @@ return {
     end,
   },
 
-  require "plugins.git",
-  require "plugins.completions",
-  require "plugins.telescope",
-
   -- --------------------
   -- tryin stuff
   -- --------------------
@@ -184,24 +188,6 @@ return {
     },
     -- lazy = false,
     -- priority = 100,
-  },
-
-  { -- collection of various small independent plugins/modules
-    "echasnovski/mini.nvim",
-    config = function()
-      -- better around/inside textobjects
-      -- examples:
-      --  - va)  - [v]isually select [a]round [)]paren
-      --  - yinq - [y]ank [i]nside [n]ext [']quote
-      --  - ci'  - [c]hange [i]nside [']quote
-      require("mini.ai").setup { n_lines = 500 }
-      -- add/delete/replace surroundings (brackets, quotes, etc.)
-      -- examples:
-      -- - saiw) - [s]urround [a]dd [i]nner [w]ord [)]paren
-      -- - sd'   - [s]urround [d]elete [']quotes
-      -- - sr)'  - [s]urround [r]eplace [)] [']
-      require("mini.surround").setup()
-    end,
   },
 
   -- {
