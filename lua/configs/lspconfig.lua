@@ -1,12 +1,10 @@
 local M = {}
-local conf = { signature = true }
 local on_init = M.on_init
 local capabilities = M.capabilities
 local on_attach = M.on_attach
 local lspconfig = require "lspconfig"
 local map = vim.keymap.set
 
--- export on_attach & capabilities
 M.on_attach = function(_, bufnr)
   local function opts(desc)
     return { buffer = bufnr, desc = "lsp " .. desc }

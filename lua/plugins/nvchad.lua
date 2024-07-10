@@ -1,5 +1,4 @@
 return {
-
   {
     "NvChad/base46",
     branch = "v2.5",
@@ -8,6 +7,8 @@ return {
     end,
   },
 
+  -- TODO: extract necessary ui components from this and remove it
+  -- dont need tabufline, if possible replace with mini.statusline
   {
     "NvChad/ui",
     branch = "v2.5",
@@ -23,7 +24,6 @@ return {
     opts = { user_default_options = { names = false } },
     config = function(_, opts)
       require("colorizer").setup(opts)
-
       -- execute colorizer as soon as possible
       vim.defer_fn(function()
         require("colorizer").attach_to_buffer(0)

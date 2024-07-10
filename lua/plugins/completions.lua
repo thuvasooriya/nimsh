@@ -1,15 +1,12 @@
 return {
-
   {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
-      {
-        -- snippet plugin
+      { -- snippet plugin
         "L3MON4D3/LuaSnip",
         dependencies = {
-          -- `friendly-snippets` contains a variety of premade snippets.
-          {
+          { -- `friendly-snippets` contains a variety of premade snippets.
             "rafamadriz/friendly-snippets",
             config = function()
               require("luasnip.loaders.from_vscode").lazy_load()
@@ -23,8 +20,7 @@ return {
         end,
       },
 
-      -- autopairing of (){}[] etc
-      {
+      { -- autopairing of (){}[] etc
         "windwp/nvim-autopairs",
         opts = {
           fast_wrap = {},
@@ -39,8 +35,7 @@ return {
         end,
       },
 
-      -- cmp sources plugins
-      {
+      { -- cmp sources plugins
         "saadparwaiz1/cmp_luasnip",
         "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-nvim-lsp",

@@ -1,16 +1,26 @@
+-- --------------------
+-- motions
+-- --------------------
 local overrides = require "configs.overrides"
 return {
-  -- --------------------
-  -- motions
-  -- --------------------
-
+  "tpope/vim-sleuth", -- detect tabstop and shiftwidth automatically
+  "tpope/vim-surround",
   {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
-    -- lazy = false,
+    lazy = false,
     config = function()
-      require("better_escape").setup()
+      require("better_escape").setup {
+        mappings = {
+          t = { j = { j = false } }, --lazygit navigation fix
+        },
+      }
     end,
+  },
+
+  { -- easier comments
+    "numToStr/Comment.nvim",
+    opts = {},
   },
 
   { -- collection of various small independent plugins/modules
@@ -22,12 +32,6 @@ return {
       --  - yinq - [y]ank [i]nside [n]ext [']quote
       --  - ci'  - [c]hange [i]nside [']quote
       require("mini.ai").setup { n_lines = 500 }
-      -- add/delete/replace surroundings (brackets, quotes, etc.)
-      -- examples:
-      -- - saiw) - [s]urround [a]dd [i]nner [w]ord [)]paren
-      -- - sd'   - [s]urround [d]elete [']quotes
-      -- - sr)'  - [s]urround [r]eplace [)] [']
-      require("mini.surround").setup()
     end,
   },
 
@@ -36,10 +40,10 @@ return {
     dependencies = { "tpope/vim-repeat" },
     lazy = false,
     config = function()
-      -- require('leap').create_default_mappings()
-      vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap-forward)")
-      vim.keymap.set({ "n", "x", "o" }, "S", "<Plug>(leap-backward)")
-      vim.keymap.set({ "n", "x", "o" }, "gs", "<Plug>(leap-from-window)")
+      vim.keymap.set("n", "s", "<Plug>(leap)")
+      vim.keymap.set("n", "S", "<Plug>(leap-from-window)")
+      vim.keymap.set({ "x", "o" }, "s", "<Plug>(leap-forward)")
+      vim.keymap.set({ "x", "o" }, "S", "<Plug>(leap-backward)")
     end,
   },
 

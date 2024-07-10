@@ -2,32 +2,25 @@ local M = {}
 
 M.nvimproject = {
   -- scope_chdir = 'tab'
+  last_session_on_startup = false,
+  dashboard_mode = true,
   projects = {
     "~/.phoenix",
     "~/.phoenix/config/*",
-    -- mac specific
-    "~/arc/pro/code/pydev/*",
-    "~/arc/pro/code/hdl/*",
-    "~/arc/pro/code/tmp/*",
-    "~/arc/pro/code/lll/*dev/*",
-    "~/dev/omnix/omnetpp-6.0.3/samples",
-    "~/dev/omnix/inet-4.5.2/examples",
-    "~/dev/omnix/inet-4.5.2/src/inet",
-    -- linux specific
-    "~/dev/*",
+    "~/dev/*dev/*",
   },
 }
 
 M.harpoon_keys = {
   {
-    "<leader>A",
+    "<leader>h",
     function()
       require("harpoon"):list():add()
     end,
     desc = "harpoon file",
   },
   {
-    "<leader>a",
+    "<leader>H",
     function()
       local harpoon = require "harpoon"
       harpoon.ui:toggle_quick_menu(harpoon:list())

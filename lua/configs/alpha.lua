@@ -7,6 +7,11 @@ function M.setup()
 
   local plugin = require "alpha"
   local fs = require "editor.fs"
+  -- local function get_window_height()
+  --   return vim.api.nvim_win_get_height(0)
+  -- end
+
+  local window_height = vim.api.nvim_win_get_height(0)
 
   M.dashboard = require "alpha.themes.dashboard"
 
@@ -16,96 +21,98 @@ function M.setup()
     return { type = "padding", val = lines }
   end
 
-  -- Text-based header
-  -- section.header = {
-  --     type = "text",
-  --     val = {
-  --         [[                                                                     ]],
-  --         [[       ███████████           █████      ██                     ]],
-  --         [[      ███████████             █████                             ]],
-  --         [[      ████████████████ ███████████ ███   ███████     ]],
-  --         [[     ████████████████ ████████████ █████ ██████████████   ]],
-  --         [[    ██████████████    █████████████ █████ █████ ████ █████   ]],
-  --         [[  ██████████████████████████████████ █████ █████ ████ █████  ]],
-  --         [[ ██████  ███ █████████████████ ████ █████ █████ ████ ██████ ]],
-  --     },
-  --     opts = {
-  --         hl = "Type",
-  --         position = "center",
-  --     },
-  -- }
+  local function reactive_h()
+    if window_height > 24 then
+      return {
+        type = "terminal",
+        command = "~/.config/nvim/logo.sh -c",
+        width = 70,
+        height = 10,
+        opts = {
+          redraw = true,
+          window_config = {
+            zindex = 1,
+          },
+        },
+      }
+    else
+      return {
+        type = "text",
+        val = {
+          [[neovim]],
+        },
+        opts = {
+          hl = "Type",
+          position = "center",
+        },
+      }
+    end
+  end
 
-  -- Terminal-based header
-  section.header = {
-    type = "terminal",
-    command = "~/.config/nvim/logo.sh -c",
-    width = 70,
-    height = 10,
+  -- terminal-based header
+  section.header = reactive_h()
+  section.project = {
+    type = "text",
+    val = fs.root { capitalize = false },
     opts = {
-      redraw = true,
-      window_config = {
-        zindex = 1,
-      },
+      hl = "AlphaTitle",
+      position = "center",
     },
   }
 
-  -- section.project = {
-  -- 	type = "text",
-  -- 	val = fs.root({ capitalize = true }),
-  -- 	opts = {
-  -- 		hl = "AlphaTitle",
-  -- 		position = "center",
-  -- 	},
-  -- }
+  section.buttons = {
+    type = "group",
+    val = {
+      M.dashboard.button("fp", "  recent projects", "<leader>fp"),
+      M.dashboard.button("fP", "  explore projects", "<leader>fP"),
+      M.dashboard.button("ff", "  find files", "<leader>ff"),
+      M.dashboard.button(":q", "  quit", "<Cmd>q<CR>"),
+    },
+    opts = {
+      spacing = 1,
+    },
+  }
 
-  --   buttons = {
-  --   { "  Find File", "Spc f f", "Telescope find_files" },
-  --   { "󰈚  Recent Files", "Spc f o", "Telescope oldfiles" },
-  --   { "󰈭  Find Word", "Spc f w", "Telescope live_grep" },
-  --   { "  Bookmarks", "Spc m a", "Telescope marks" },
-  --   { "  Themes", "Spc t h", "Telescope themes" },
-  --   { "  Mappings", "Spc c h", "NvCheatsheet" },
-  -- }
-
-  -- section.buttons = {
-  --   type = 'group',
-  --   val = {
-  --     M.dashboard.button('⌘ N', '  Create file', '<Cmd>normal <C-n><CR>'),
-  --     M.dashboard.button('⌘ E', '  Explore project', '<Cmd>normal <D-e><CR>'),
-  --     M.dashboard.button('⌘ T', '  Find file', '<Cmd>normal <D-t><CR>'),
-  --     M.dashboard.button('⌘ F', '  Find text', '<Cmd>normal <D-f><CR>'),
-  --     M.dashboard.button('⌘ Q', '  Quit', '<Cmd>normal <C-q><CR>'),
-  --   },
-  --   opts = {
-  --     spacing = 1,
-  --   },
-  -- }
-
-  -- for _, button in ipairs(section.buttons.val) do
-  --   button.opts.hl = "Normal"
-  --   button.opts.hl_shortcut = "AlphaShortcut"
-  -- end
+  for _, button in ipairs(section.buttons.val) do
+    button.opts.hl = "Normal"
+    button.opts.hl_shortcut = "AlphaShortcut"
+  end
 
   section.footer = {
     type = "text",
-    val = "",
+    val = "something awesome",
     opts = {
       hl = "Comment",
       position = "center",
     },
   }
 
-  M.dashboard.config.layout = {
-    section.padding(12),
-    section.header,
-    section.padding(2),
-    section.project,
-    -- section.padding(1),
-    -- section.buttons,
-    section.padding(1),
-    section.footer,
-  }
-
+  local function reactive_layout()
+    if window_height > 24 then
+      return {
+        section.padding(8),
+        section.header,
+        section.padding(2),
+        section.project,
+        section.padding(1),
+        section.buttons,
+        section.padding(1),
+        section.footer,
+      }
+    else
+      return {
+        -- section.padding(8),
+        -- section.header,
+        section.padding(2),
+        section.project,
+        section.padding(1),
+        section.buttons,
+        section.padding(1),
+        section.footer,
+      }
+    end
+  end
+  M.dashboard.config.layout = reactive_layout()
   M.dashboard.section = section
 
   plugin.setup(M.dashboard.config)

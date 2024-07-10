@@ -2,19 +2,25 @@ local overrides = require "configs.overrides"
 
 return {
   "nvim-lua/plenary.nvim",
-  "tpope/vim-sleuth", -- detect tabstop and shiftwidth automatically
+  require "plugins.motions",
+  require "plugins.nvchad",
+  require "plugins.git",
+  require "plugins.completions",
+  require "plugins.telescope",
+  require "plugins.lint",
+  -- require "plugins.debug",
   -- --------------------
   -- ui stuff
   -- --------------------
 
-  {
+  { -- dashboard
     "goolord/alpha-nvim",
     event = "VimEnter",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = require("configs.alpha").setup,
   },
 
-  {
+  { -- scope indent lines
     "lukas-reineke/indent-blankline.nvim",
     event = "User FilePost",
     opts = {
@@ -40,11 +46,6 @@ return {
   },
 
   {
-    "numToStr/Comment.nvim",
-    opts = {},
-  },
-
-  {
     "nvim-tree/nvim-web-devicons",
     opts = function()
       return { override = require "nvchad.icons.devicons" }
@@ -64,25 +65,10 @@ return {
     config = function(_, opts)
       require("nvim-tree").setup(opts)
     end,
+    lazy = false,
+    priority = 200,
   },
 
-  {
-    "stevearc/oil.nvim",
-    lazy = false,
-    opts = {
-      view_options = {
-        show_hidden = true,
-      },
-      default_file_explorer = true,
-    },
-    -- config = function()
-    --   require('oil').setup {
-    --   }
-    -- end,
-    keys = {
-      { "-", "<cmd>Oil<cr>", desc = "open parent directory" },
-    },
-  },
   -- {
   --   "rcarriga/nvim-notify",
   --   opts = {},
@@ -92,16 +78,8 @@ return {
   --   opts = {},
   -- },
 
-  require "plugins.motions",
-  require "plugins.nvchad",
-  require "plugins.git",
-  require "plugins.completions",
-  require "plugins.telescope",
-  require "plugins.lint",
-  -- require "plugins.debug",
-
   -- --------------------
-  -- default stuff
+  -- treesitter n lsp stuff
   -- --------------------
   {
     "nvim-treesitter/nvim-treesitter",
@@ -112,13 +90,13 @@ return {
       return require "configs.treesitter"
     end,
     config = function(_, opts)
-      -- [[ configure treesitter ]] see `:help nvim-treesitter`
+      -- :help nvim-treesitter
       require("nvim-treesitter.install").prefer_git = true
       ---@diagnostic disable-next-line: missing-fields
       require("nvim-treesitter.configs").setup(opts)
-      --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-      --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-      --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+      --    - incremental selection: included, see `:help nvim-treesitter-incremental-selection-mod`
+      --    - show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
+      --    - treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     end,
   },
 
@@ -155,7 +133,7 @@ return {
     end,
   },
 
-  {
+  { -- keyboard hint
     "folke/which-key.nvim",
     event = "VimEnter",
     keys = { "<leader>", "<c-r>", "<c-w>", '"', "'", "`", "c", "v", "g" },
@@ -167,28 +145,46 @@ return {
   },
 
   -- --------------------
+  -- files n projects stuff
+  -- --------------------
+
+  {
+    "stevearc/oil.nvim",
+    lazy = false,
+    opts = {
+      view_options = {
+        show_hidden = true,
+      },
+      default_file_explorer = true,
+    },
+    keys = {
+      { "-", "<cmd>Oil<cr>", desc = "open parent directory" },
+    },
+  },
+
+  {
+    "coffebar/neovim-project",
+    opts = overrides.nvimproject,
+    init = function()
+      vim.opt.sessionoptions:append "globals" -- save global variables that start with an uppercase letter and contain at least one lowercase letter.
+      -- vim.opt.sessionoptions:remove "tabpages"
+    end,
+    dependencies = {
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-telescope/telescope.nvim" },
+      { "Shatur/neovim-session-manager" },
+    },
+    lazy = false,
+    priority = 100,
+  },
+
+  -- --------------------
   -- tryin stuff
   -- --------------------
   -- {
   --   'stevearc/overseer.nvim',
   --   opts = {},
   -- },
-  {
-    "coffebar/neovim-project",
-    opts = overrides.nvimproject,
-    -- init = function()
-    -- enable saving the state of plugins in the session
-    -- vim.opt.sessionoptions:append("globals") -- save global variables that start with an uppercase letter and contain at least one lowercase letter.
-    -- vim.opt.sessionoptions:remove("tabpages")
-    -- end,
-    dependencies = {
-      { "nvim-lua/plenary.nvim" },
-      { "nvim-telescope/telescope.nvim" },
-      { "Shatur/neovim-session-manager" },
-    },
-    -- lazy = false,
-    -- priority = 100,
-  },
 
   -- {
   --   "anurag3301/nvim-platformio.lua",
