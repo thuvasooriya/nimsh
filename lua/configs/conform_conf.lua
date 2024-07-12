@@ -11,7 +11,7 @@ local options = {
     css = { { "biome", "prettierd" } },
     html = { "prettierd" },
     markdown = { "prettierd" },
-
+    just = { "just" },
     sh = { "shfmt" },
     zig = { "zigfmt" },
     cpp = { "clang_format" },
@@ -24,7 +24,7 @@ local options = {
         return { "isort", "black" }
       end
     end,
-    tex = { "latexindent" },
+    -- tex = { "latexindent" },
     verilog = { "verible" },
     systemverilog = { "verible" },
   },
@@ -33,7 +33,7 @@ local options = {
   },
 
   format_on_save = function(bufnr)
-    local disable_filetypes = { c = true, cpp = true, md = true }
+    local disable_filetypes = { c = false, cpp = false, md = true }
     return {
       timeout_ms = 500,
       lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],

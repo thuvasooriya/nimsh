@@ -86,6 +86,7 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     build = ":TSUpdate",
+    dependencies = { { "nushell/tree-sitter-nu" } },
     opts = function()
       return require "configs.treesitter"
     end,

@@ -28,6 +28,7 @@ local options = {
     "gitignore",
     "nix",
     "just",
+    "nu",
     "make",
     "verilog",
     "toml",
