@@ -13,10 +13,13 @@ local options = {
     markdown = { "prettierd" },
     just = { "just" },
     sh = { "shfmt" },
+    bash = { "shfmt" },
+    zsh = { "shfmt" },
     zig = { "zigfmt" },
     cpp = { "clang_format" },
     c = { "clang_format" },
     nix = { "alejandra" },
+    vhdl = { "vsg" },
     python = function(bufnr)
       if require("conform").get_formatter_info("ruff_format", bufnr).available then
         return { "ruff_format", "ruff_fix", "ruff_organize_imports" }

@@ -8,11 +8,10 @@ return {
   {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
-    lazy = false,
     config = function()
       require("better_escape").setup {
         mappings = {
-          t = { j = { j = false } }, --lazygit navigation fix
+          t = { j = { false } }, --lazygit navigation fix
           v = { j = { k = false } },
         },
       }

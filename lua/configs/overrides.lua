@@ -8,6 +8,22 @@ M.nvimproject = {
     "~/.phoenix",
     "~/.phoenix/config/*",
     "~/dev/*dev/*",
+    "~/dev/*",
+    "~/dev/vivado4mac/projects/*",
+  },
+  session_manager_opts = {
+    autosave_ignore_dirs = {
+      vim.fn.expand "~", -- don't create a session for $HOME/
+      "/tmp",
+    },
+    autosave_ignore_filetypes = {
+      "ccc-ui",
+      "gitcommit",
+      "gitrebase",
+      "qf",
+      "toggleterm",
+      "NvimTree",
+    },
   },
 }
 
