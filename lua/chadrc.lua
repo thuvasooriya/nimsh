@@ -1,10 +1,11 @@
+---@type ChadrcConfig
 local M = {}
 
 M.ui = {
-  theme = 'catppuccin',
+  theme = "catppuccin",
   transparency = true,
   tabufline = {
-    order = { 'treeOffset', 'buffers', 'tabs' },
+    order = { "treeOffset", "buffers", "tabs" },
     -- sample module example
     -- modules = {
     -- 	abc = function()
@@ -13,7 +14,7 @@ M.ui = {
     -- },
   },
   statusline = {
-    theme = 'vscode_colored', -- default/vscode/vscode_colored/minimal
+    theme = "vscode_colored", -- default/vscode/vscode_colored/minimal
   },
   -- nvdash = {
   --   load_on_startup = true,

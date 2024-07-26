@@ -185,7 +185,7 @@ M.defaults = function()
   }
 end
 
-local servers = { "ruff", "html", "cssls", "tsserver", "clangd", "zls", "astro" }
+local servers = { "ruff", "html", "cssls", "biome", "clangd", "zls", "astro" }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
