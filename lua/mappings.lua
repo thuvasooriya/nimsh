@@ -47,6 +47,12 @@ map("i", "<C-e>", "<End>", { desc = "move end of line" })
 -- map("i", "<C-l>", "<Right>", { desc = "move right" })
 map("i", "<C-j>", "<Down>", { desc = "move down" })
 map("i", "<C-k>", "<Up>", { desc = "move up" })
+
+map("n", "<leader>b", "<cmd>enew<CR>", { desc = "buffer new" })
+map("n", "<tab>", "<cmd>:bn<CR>", { desc = "buffer go next" })
+map("n", "<S-tab>", "<cmd>:bp<CR>", { desc = "buffer go prev" })
+map("n", "<leader>x", "<cmd>:bd<CR>", { desc = "buffer close" })
+
 -- "jj" and "jk" are mapped to <ESC>
 -- no need because of using better-escape.neovim
 -- map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
@@ -93,20 +99,6 @@ map("n", "<leader>wk", function()
   vim.cmd("WhichKey " .. vim.fn.input "WhichKey: ")
 end, { desc = "whichkey query lookup" })
 
--- tabufline
--- map("n", "<leader>b", "<cmd>enew<CR>", { desc = "buffer new" })
-map("n", "<tab>", function()
-  require("nvchad.tabufline").next()
-end, { desc = "buffer goto next" })
-
-map("n", "<S-tab>", function()
-  require("nvchad.tabufline").prev()
-end, { desc = "buffer goto prev" })
-
-map("n", "<leader>x", function()
-  require("nvchad.tabufline").close_buffer()
-end, { desc = "buffer close" })
-
 -- comment
 map("n", "<leader>/", "gcc", { desc = "comment toggle", remap = true })
 map("v", "<leader>/", "gc", { desc = "comment toggle", remap = true })
@@ -115,7 +107,7 @@ map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" }
 -- map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "nvimtree focus window" })
 -- telescope
 map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
-map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "telescope [f]ind [b]uffers" })
+map("n", "<leader>fb", "<cmd>Telescope buffers initial_mode=normal<CR>", { desc = "telescope [f]ind [b]uffers" })
 map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "telescope [f]ind [h]elp" })
 map("n", "<leader>ma", "<cmd>Telescope marks<CR>", { desc = "telescope find [ma]rks" })
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "telescope [f]ind [o]ldfiles" })
