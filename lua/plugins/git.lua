@@ -9,7 +9,6 @@ return {
       require("gitsigns").setup(opts)
     end,
   },
-
   {
     "kdheepak/lazygit.nvim",
     cmd = {
@@ -18,10 +17,6 @@ return {
       "LazyGitCurrentFile",
       "LazyGitFilter",
       "LazyGitFilterCurrentFile",
-    },
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
-      "nvim-lua/plenary.nvim",
     },
   },
 }

@@ -34,7 +34,7 @@
 hi there! this is my neovim config, my config began as a starter config to nvchad
 and then i stopped and learned neovim again with kikstarter template and then integrated them both.
 i personally use nix on my system and this config is in a way that it uses nix to install all the packages required by neovim instead of mason (i'm still on the fence about this one, classic determinism vs flexibility debate).
-this config is pretty minimal (i guess) and focused on systems programming languages, hardware description languages and embedded development.
+this config is pretty minimal (i guess) and focused on systems programming languages, hardware description languages and embedded development. with some flare for markdown writing utilities.
 </p>
 
 > under development and bugs are expected, issues are welcome
@@ -48,14 +48,20 @@ this config is pretty minimal (i guess) and focused on systems programming langu
 
 - [ ] build tasks and test tasks easy implementation
 - [ ] typesetting configuration with latex and typst
-- [ ] cleanup lsp config
-- [ ] ruff integration
-- [ ] propper verilator linting
 - [ ] propper snippets completion
+- [ ] cleanup lsp config
+- [ ] ruff lsp integration
+- [ ] clang-format fix for platformio
+- [ ] move markdown preview to matilda plugin
+- [ ] propper verilator linting
 - [ ] editor.fs cleanup
 - [ ] trim down nvchad ui plugin
-- [ ] implement dap - low priority
+  - [ ] remove tabufline
+  - [ ] modify statusline to be more minimal
+- [ ] open notebooks in browser
 - [ ] test it in linux
+- [ ] implement dap - low priority
+- [ ] luarocks?
 
 ## memo
 
@@ -64,6 +70,7 @@ this config is pretty minimal (i guess) and focused on systems programming langu
 
 ## done
 
+- [x] github markdown preview `<leader>mp`
 - [x] ~move to version 10~ flying on nightly
 - [x] ~remapping J and K to faster movement~ using default bindings and leap plugin
 - [x] ~partial integration with vscode~ keeping vscode neovim config separate
@@ -72,7 +79,6 @@ this config is pretty minimal (i guess) and focused on systems programming langu
 
 ## ack
 
-- nvchad
-- tj
-- prime
-- stackoverflow, reddit, discord
+- nvchad for base46
+- tj for the awesome tutorials and kikstarter.nvim
+- prime for his stunning personality

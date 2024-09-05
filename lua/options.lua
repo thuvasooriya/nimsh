@@ -6,6 +6,7 @@ local o = vim.o
 -- :help option-list
 
 opt.number = true
+opt.termguicolors = true
 -- opt.numberwidth = 2
 -- opt.ruler = false
 -- opt.relativenumber = true
@@ -58,7 +59,7 @@ opt.shortmess:append "sI"
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line
 opt.whichwrap:append "<>[]hl"
-vim.wo.wrap = false
+vim.wo.wrap = true
 
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.fn.has "win32" ~= 0

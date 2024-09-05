@@ -43,7 +43,6 @@ local options = {
     -- mrk
     "markdown",
     "markdown_inline",
-    "latex",
     "python",
   },
 

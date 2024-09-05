@@ -27,7 +27,7 @@ map({ "n", "t" }, "<A-v>", function()
   require("nvchad.term").toggle { pos = "vsp", id = "vtoggleTerm" }
 end, { desc = "terminal toggleable vertical term" })
 
-map({ "n", "t" }, "<A-h>", function()
+map({ "n", "t" }, "<C-`>", function()
   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
 end, { desc = "terminal new horizontal term" })
 
@@ -41,6 +41,7 @@ map("n", "<C-h>", "<C-w>h", { desc = "switch window left" })
 map("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
 map("n", "<C-j>", "<C-w>j", { desc = "switch window down" })
 map("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
+
 map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
 map("i", "<C-e>", "<End>", { desc = "move end of line" })
 -- map("i", "<C-h>", "<Left>", { desc = "move left" })
@@ -49,17 +50,19 @@ map("i", "<C-j>", "<Down>", { desc = "move down" })
 map("i", "<C-k>", "<Up>", { desc = "move up" })
 
 map("n", "<leader>b", "<cmd>enew<CR>", { desc = "buffer new" })
-map("n", "<tab>", "<cmd>:bn<CR>", { desc = "buffer go next" })
-map("n", "<S-tab>", "<cmd>:bp<CR>", { desc = "buffer go prev" })
-map("n", "<leader>x", "<cmd>:bd<CR>", { desc = "buffer close" })
+map("n", "<tab>", "<cmd>bn<CR>", { desc = "buffer go next" })
+map("n", "<S-tab>", "<cmd>bp<CR>", { desc = "buffer go prev" })
+map("n", "<leader>x", "<cmd>bd<CR>", { desc = "buffer close" })
 
 -- "jj" and "jk" are mapped to <ESC>
 -- no need because of using better-escape.neovim
 -- map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
+
 map("n", "<left>", '<cmd>echo "use h to move!!"<cr>', { noremap = true })
 map("n", "<right>", '<cmd>echo "use l to move!!"<cr>', { noremap = true })
 map("n", "<up>", '<cmd>echo "use k to move!!"<cr>', { noremap = true })
 map("n", "<down>", '<cmd>echo "use j to move!!"<cr>', { noremap = true })
+
 -- blankline
 map("n", "<leader>cc", function()
   local config = { scope = {} }
@@ -85,6 +88,31 @@ end, { desc = "[f]ormat [f]iles" })
 map("n", "<leader>ls", "<cmd> Lazy sync <CR>", { desc = "lazy sync config" })
 -- lazygit
 map("n", "<leader>gg", "<cmd> LazyGit <CR>", { desc = "lazygit open" })
+-- local Terminal = require("toggleterm.terminal").Terminal
+-- local lazygit = Terminal:new { cmd = "lazygit", hidden = true }
+-- local lazygit = Terminal:new {
+--   cmd = "lazygit",
+--   dir = "git_dir",
+--   direction = "float",
+--   -- float_opts = {
+--   --   border = "double",
+--   -- },
+--   -- function to run on opening the terminal
+--   on_open = function(term)
+--     vim.cmd "startinsert!"
+--     vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+--   end,
+--   -- function to run on closing the terminal
+--   on_close = function(term)
+--     vim.cmd "startinsert!"
+--   end,
+-- }
+--
+-- function _lazygit_toggle()
+--   lazygit:toggle()
+-- end
+--
+-- vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
 -- neovim-project
 map("n", "<leader>fP", "<cmd> Telescope neovim-project discover <CR>", { desc = "telescope find projects" })
 map(

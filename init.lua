@@ -15,8 +15,8 @@ local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
 ---@diagnostic disable-next-line: undefined-field
 if not vim.loop.fs_stat(lazypath) then
-    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-    vim.fn.system { "git", "clone", "--filter=blob:none", lazyrepo, "--branch=stable", lazypath }
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  vim.fn.system { "git", "clone", "--filter=blob:none", lazyrepo, "--branch=stable", lazypath }
 end
 
 ---@diagnostic disable-next-line: undefined-field
@@ -24,7 +24,7 @@ vim.opt.rtp:prepend(lazypath)
 
 local lazy_config = require "configs.lazy"
 require("lazy").setup({
-    { import = "plugins" },
+  { import = "plugins" },
 }, lazy_config)
 
 -- load theme
@@ -35,5 +35,5 @@ require "options"
 require "autocmds"
 
 vim.schedule(function()
-    require "mappings"
+  require "mappings"
 end)

@@ -51,7 +51,7 @@ local options = {
     },
   },
 
-  extensions_list = { "fzf", "themes", "terms", "lazygit" },
+  extensions_list = { "fzf", "themes", "terms" },
   extensions = {},
 }
 

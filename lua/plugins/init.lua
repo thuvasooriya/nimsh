@@ -13,6 +13,16 @@ return {
   -- ui stuff
   -- --------------------
 
+  -- {
+  --   "catppuccin/nvim",
+  --   name = "catppuccin",
+  --   priority = 1000,
+  --   opts = {
+  --     term_colors = true,
+  --     -- vim.cmd.colorscheme "catppuccin",
+  --   },
+  -- },
+
   { -- dashboard
     "goolord/alpha-nvim",
     event = "VimEnter",
@@ -37,7 +47,6 @@ return {
       dofile(vim.g.base46_cache .. "blankline")
     end,
   },
-
   { -- highlight todo, notes, etc in comments
     "folke/todo-comments.nvim",
     event = "VimEnter",
@@ -182,6 +191,11 @@ return {
   -- --------------------
   -- tryin stuff
   -- --------------------
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    opts = {},
+  },
   -- {
   --   'stevearc/overseer.nvim',
   --   opts = {},

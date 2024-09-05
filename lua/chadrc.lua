@@ -3,7 +3,7 @@ local M = {}
 
 M.ui = {
   theme = "catppuccin",
-  transparency = true,
+  transparency = false,
   tabufline = {
     enabled = false,
   },

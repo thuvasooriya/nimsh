@@ -9,7 +9,7 @@ M.nvimproject = {
     "~/.phoenix/config/*",
     "~/dev/*dev/*",
     "~/dev/*",
-    "~/dev/vivado4mac/projects/*",
+    "~/dev/builds/vivado4mac/projects/*",
   },
   session_manager_opts = {
     autosave_ignore_dirs = {
