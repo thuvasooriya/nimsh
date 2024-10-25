@@ -3,25 +3,31 @@ local overrides = require "configs.overrides"
 return {
   "nvim-lua/plenary.nvim",
   require "plugins.motions",
-  require "plugins.nvchad",
   require "plugins.git",
   require "plugins.completions",
   require "plugins.telescope",
   require "plugins.lint",
-  -- require "plugins.debug",
+  require "plugins.debug",
   -- --------------------
   -- ui stuff
   -- --------------------
+  {
+    "nvchad/ui",
+    dependencies = { "nvchad/volt" },
+    config = function()
+      require "nvchad"
+    end,
+  },
 
-  -- {
-  --   "catppuccin/nvim",
-  --   name = "catppuccin",
-  --   priority = 1000,
-  --   opts = {
-  --     term_colors = true,
-  --     -- vim.cmd.colorscheme "catppuccin",
-  --   },
-  -- },
+  {
+    "nvchad/base46",
+    lazy = true,
+    build = function()
+      require("base46").load_all_highlights()
+    end,
+  },
+
+  { "nvchad/showkeys", cmd = "ShowkeysToggle" },
 
   { -- dashboard
     "goolord/alpha-nvim",
@@ -65,18 +71,18 @@ return {
     end,
   },
 
-  {
-    "nvim-tree/nvim-tree.lua",
-    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    opts = function()
-      return require "configs.nvimtree"
-    end,
-    config = function(_, opts)
-      require("nvim-tree").setup(opts)
-    end,
-    lazy = false,
-    priority = 200,
-  },
+  -- {
+  --   "nvim-tree/nvim-tree.lua",
+  --   cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+  --   opts = function()
+  --     return require "configs.nvimtree"
+  --   end,
+  --   config = function(_, opts)
+  --     require("nvim-tree").setup(opts)
+  --   end,
+  --   lazy = false,
+  --   priority = 200,
+  -- },
 
   -- {
   --   "rcarriga/nvim-notify",
@@ -191,11 +197,11 @@ return {
   -- --------------------
   -- tryin stuff
   -- --------------------
-  {
-    "akinsho/toggleterm.nvim",
-    version = "*",
-    opts = {},
-  },
+  -- {
+  --   "akinsho/toggleterm.nvim",
+  --   version = "*",
+  --   opts = {},
+  -- },
   -- {
   --   'stevearc/overseer.nvim',
   --   opts = {},

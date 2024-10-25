@@ -49,7 +49,7 @@ map("i", "<C-e>", "<End>", { desc = "move end of line" })
 map("i", "<C-j>", "<Down>", { desc = "move down" })
 map("i", "<C-k>", "<Up>", { desc = "move up" })
 
-map("n", "<leader>b", "<cmd>enew<CR>", { desc = "buffer new" })
+-- map("n", "<leader>b", "<cmd>enew<CR>", { desc = "buffer new" })
 map("n", "<tab>", "<cmd>bn<CR>", { desc = "buffer go next" })
 map("n", "<S-tab>", "<cmd>bp<CR>", { desc = "buffer go prev" })
 map("n", "<leader>x", "<cmd>bd<CR>", { desc = "buffer close" })
@@ -131,7 +131,7 @@ end, { desc = "whichkey query lookup" })
 map("n", "<leader>/", "gcc", { desc = "comment toggle", remap = true })
 map("v", "<leader>/", "gc", { desc = "comment toggle", remap = true })
 -- nvimtree
-map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
+-- map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
 -- map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "nvimtree focus window" })
 -- telescope
 map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
@@ -148,7 +148,7 @@ map(
 map("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "telescope [g]it [c]ommits" })
 map("n", "<leader>gs", "<cmd>Telescope git_status<CR>", { desc = "telescope [g]it [s]tatus" })
 map("n", "<leader>pt", "<cmd>Telescope terms initial_mode=normal<CR>", { desc = "telescope [p]ick hidden [t]erm" })
-map("n", "<leader>th", "<cmd>Telescope themes<CR>", { desc = "telescope nvchad themes" })
+-- map("n", "<leader>th", "<cmd>Telescope themes<CR>", { desc = "telescope nvchad themes" })
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "telescope find files" })
 map(
   "n",
