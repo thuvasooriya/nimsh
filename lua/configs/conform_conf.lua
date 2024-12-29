@@ -22,7 +22,7 @@ local options = {
     arduino = { "clang_format" },
     rust = { "rustfmt", lsp_format = "fallback" },
     nix = { "alejandra" },
-    vhdl = { "vsg" },
+    -- vhdl = { "vsg" },
     python = function(bufnr)
       if require("conform").get_formatter_info("ruff_format", bufnr).available then
         return { "ruff_format", "ruff_fix", "ruff_organize_imports" }

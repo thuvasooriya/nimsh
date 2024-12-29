@@ -7,7 +7,6 @@ vim.g.loaded_python3_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 
--- vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46_cache/"
 vim.g.have_nerd_font = true
 
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
@@ -22,13 +21,11 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local lazy_config = require "configs.lazy"
--- require("lazy").setup({
---   { import = "plugins" },
--- }, lazy_config)
+require("lazy").setup({
+  { import = "plugins" },
+}, lazy_config)
 
--- load theme
--- dofile(vim.g.base46_cache .. "defaults")
--- dofile(vim.g.base46_cache .. "statusline")
+vim.cmd.colorscheme "catppuccin"
 
 require "options"
 require "autocmds"

@@ -70,14 +70,4 @@ return {
       -- vim.keymap.set({ "x", "o" }, "R", "<Plug>(leap-backward)")
     end,
   },
-
-  {
-    "theprimeagen/harpoon",
-    branch = "harpoon2",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("harpoon"):setup()
-    end,
-    keys = overrides.harpoon_keys,
-  },
 }

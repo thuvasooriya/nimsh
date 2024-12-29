@@ -6,7 +6,7 @@ function M.setup()
   require "alpha.term"
 
   local plugin = require "alpha"
-  local fs = require "editor.fs"
+  -- local fs = require "editor.fs"
   -- local function get_window_height()
   --   return vim.api.nvim_win_get_height(0)
   -- end
@@ -51,14 +51,14 @@ function M.setup()
 
   -- terminal-based header
   section.header = reactive_h()
-  section.project = {
-    type = "text",
-    val = fs.root { capitalize = false },
-    opts = {
-      hl = "AlphaTitle",
-      position = "center",
-    },
-  }
+  -- section.project = {
+  --   type = "text",
+  --   val = fs.root { capitalize = false },
+  --   opts = {
+  --     hl = "AlphaTitle",
+  --     position = "center",
+  --   },
+  -- }
 
   section.buttons = {
     type = "group",

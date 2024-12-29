@@ -61,17 +61,10 @@ opt.shortmess:append "sI"
 opt.whichwrap:append "<>[]hl"
 vim.wo.wrap = true
 
--- add binaries installed by mason.nvim to path
-local is_windows = vim.fn.has "win32" ~= 0
-local sep = is_windows and "\\" or "/"
-local delim = is_windows and ";" or ":"
-vim.env.PATH = table.concat({ vim.fn.stdpath "data", "mason", "bin" }, sep) .. delim .. vim.env.PATH
-vim.g.lua_snippets_path = vim.fn.stdpath "config" .. "/lua/luasnip"
-
-local ft = require "Comment.ft"
+-- local ft = require "Comment.ft"
 
 -- ft.javascript = {'//%s', '/*%s*/'},
 -- ft.yaml = '#%s',
-ft.just = ft.get "make"
+-- ft.just = ft.get "make"
 -- ft({ "go", "rust" }, ft.get "c")
 -- ft({ "toml", "graphql" }, "#%s")

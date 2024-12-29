@@ -43,9 +43,6 @@ return {
         "hrsh7th/cmp-path",
       },
     },
-    opts = function()
-      return require "configs.cmp_conf"
-    end,
     config = function(_, opts)
       require("cmp").setup(opts)
     end,

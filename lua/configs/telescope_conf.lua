@@ -1,5 +1,3 @@
-dofile(vim.g.base46_cache .. "telescope")
-
 local options = {
   defaults = {
     vimgrep_arguments = {
@@ -51,7 +49,7 @@ local options = {
     },
   },
 
-  extensions_list = { "fzf", "themes", "terms" },
+  extensions_list = { "fzf" },
   extensions = {},
 }
 

@@ -4,31 +4,65 @@ return {
   "nvim-lua/plenary.nvim",
   require "plugins.motions",
   require "plugins.git",
-  -- require "plugins.completions",
-  -- require "plugins.telescope",
-  -- require "plugins.lsp",
-  -- require "plugins.lint",
-  -- require "plugins.debug",
+  require "plugins.completions",
+  require "plugins.telescope",
+  require "plugins.lint",
   -- --------------------
   -- ui stuff
   -- --------------------
-  -- {
-  --   "nvchad/ui",
-  --   dependencies = { "nvchad/volt" },
-  --   config = function()
-  --     require "nvchad"
-  --   end,
-  -- },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    opts = {
 
-  -- {
-  --   "nvchad/base46",
-  --   lazy = true,
-  --   build = function()
-  --     require("base46").load_all_highlights()
-  --   end,
-  -- },
-
-  -- { "nvchad/showkeys", cmd = "ShowkeysToggle" },
+      flavour = "auto", -- latte, frappe, macchiato, mocha
+      background = { -- :h background
+        light = "latte",
+        dark = "mocha",
+      },
+      transparent_background = false, -- disables setting the background color.
+      show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
+      term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
+      dim_inactive = {
+        enabled = false, -- dims the background color of inactive window
+        shade = "dark",
+        percentage = 0.15, -- percentage of the shade to apply to the inactive window
+      },
+      no_italic = false, -- Force no italic
+      no_bold = false, -- Force no bold
+      no_underline = false, -- Force no underline
+      styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
+        comments = { "italic" }, -- Change the style of comments
+        conditionals = { "italic" },
+        loops = {},
+        functions = {},
+        keywords = {},
+        strings = {},
+        variables = {},
+        numbers = {},
+        booleans = {},
+        properties = {},
+        types = {},
+        operators = {},
+        -- miscs = {}, -- Uncomment to turn off hard-coded styles
+      },
+      color_overrides = {},
+      custom_highlights = {},
+      default_integrations = true,
+      integrations = {
+        cmp = true,
+        gitsigns = true,
+        nvimtree = true,
+        treesitter = true,
+        notify = false,
+        mini = {
+          enabled = true,
+          indentscope_color = "",
+        },
+      },
+    },
+  },
 
   { -- dashboard
     "goolord/alpha-nvim",
@@ -37,23 +71,10 @@ return {
     config = require("configs.alpha").setup,
   },
 
-  -- { -- scope indent lines
-  --   "lukas-reineke/indent-blankline.nvim",
-  --   event = "User FilePost",
-  --   opts = {
-  --     indent = { char = "│", highlight = "IblChar" },
-  --     scope = { char = "│", highlight = "IblScopeChar" },
-  --   },
-  --   config = function(_, opts)
-  --     dofile(vim.g.base46_cache .. "blankline")
-  --
-  --     local hooks = require "ibl.hooks"
-  --     hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
-  --     require("ibl").setup(opts)
-  --
-  --     dofile(vim.g.base46_cache .. "blankline")
-  --   end,
-  -- },
+  { -- scope indent lines
+    "lukas-reineke/indent-blankline.nvim",
+    event = "User FilePost",
+  },
 
   { -- highlight todo, notes, etc in comments
     "folke/todo-comments.nvim",
@@ -62,48 +83,28 @@ return {
     opts = { signs = true },
   },
 
-  {
-    "nvim-tree/nvim-web-devicons",
-    opts = function()
-      return { override = require "nvchad.icons.devicons" }
-    end,
-    config = function(_, opts)
-      dofile(vim.g.base46_cache .. "devicons")
-      require("nvim-web-devicons").setup(opts)
-    end,
-  },
-
-  -- {
-  --   "rcarriga/nvim-notify",
-  --   opts = {},
-  -- },
-  -- {
-  --   "stevearc/dressing.nvim",
-  --   opts = {},
-  -- },
-
   -- --------------------
   -- treesitter n lsp stuff
   -- --------------------
-  -- {
-  --   "nvim-treesitter/nvim-treesitter",
-  --   event = { "BufReadPost", "BufNewFile" },
-  --   cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-  --   build = ":TSUpdate",
-  --   dependencies = { { "nushell/tree-sitter-nu" } },
-  --   opts = function()
-  --     return require "configs.treesitter"
-  --   end,
-  --   config = function(_, opts)
-  --     -- :help nvim-treesitter
-  --     require("nvim-treesitter.install").prefer_git = true
-  --     ---@diagnostic disable-next-line: missing-fields
-  --     require("nvim-treesitter.configs").setup(opts)
-  --     --    - incremental selection: included, see `:help nvim-treesitter-incremental-selection-mod`
-  --     --    - show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-  --     --    - treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-  --   end,
-  -- },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+    build = ":TSUpdate",
+    dependencies = { { "nushell/tree-sitter-nu" } },
+    opts = function()
+      return require "configs.treesitter"
+    end,
+    config = function(_, opts)
+      -- :help nvim-treesitter
+      require("nvim-treesitter.install").prefer_git = true
+      ---@diagnostic disable-next-line: missing-fields
+      require("nvim-treesitter.configs").setup(opts)
+      --    - incremental selection: included, see `:help nvim-treesitter-incremental-selection-mod`
+      --    - show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
+      --    - treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+    end,
+  },
 
   {
     "neovim/nvim-lspconfig",
@@ -144,7 +145,7 @@ return {
     keys = { "<leader>", "<c-r>", "<c-w>", '"', "'", "`", "c", "v", "g" },
     cmd = "WhichKey",
     config = function(_, opts)
-      dofile(vim.g.base46_cache .. "whichkey")
+      -- dofile(vim.g.base46_cache .. "whichkey")
       require("which-key").setup(opts)
     end,
   },
@@ -155,6 +156,7 @@ return {
 
   {
     "stevearc/oil.nvim",
+    dependencies = { { "nvim-tree/nvim-web-devicons" } },
     lazy = false,
     opts = {
       -- Oil will take over directory buffers (e.g. `vim .` or `:e src/`)
@@ -357,12 +359,6 @@ return {
         border = "rounded",
       },
     },
-    -- opts = {
-    --   view_options = {
-    --     show_hidden = true,
-    --   },
-    --   default_file_explorer = true,
-    -- },
     keys = {
       { "-", "<cmd>Oil<cr>", desc = "open parent directory" },
     },
@@ -383,34 +379,4 @@ return {
     lazy = false,
     priority = 100,
   },
-
-  -- --------------------
-  -- tryin stuff
-  -- --------------------
-  -- {
-  --   "akinsho/toggleterm.nvim",
-  --   version = "*",
-  --   opts = {},
-  -- },
-  -- {
-  --   'stevearc/overseer.nvim',
-  --   opts = {},
-  -- },
-
-  -- {
-  --   "anurag3301/nvim-platformio.lua",
-  --   dependencies = {
-  --     { "akinsho/nvim-toggleterm.lua" },
-  --     { "nvim-telescope/telescope.nvim" },
-  --     { "nvim-lua/plenary.nvim" },
-  --   },
-  --   cmd = {
-  --     "Pioinit",
-  --     "Piorun",
-  --     "Piocmd",
-  --     "Piolib",
-  --     "Piomon",
-  --     "Piodebug",
-  --   },
-  -- },
 }
