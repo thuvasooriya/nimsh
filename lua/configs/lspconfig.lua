@@ -205,4 +205,6 @@ lspconfig.verible.setup {
   format_on_save = true,
 }
 
+-- lspconfig.veridian.setup {}
+
 return M

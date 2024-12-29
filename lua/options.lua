@@ -73,6 +73,5 @@ local ft = require "Comment.ft"
 -- ft.javascript = {'//%s', '/*%s*/'},
 -- ft.yaml = '#%s',
 ft.just = ft.get "make"
-
 -- ft({ "go", "rust" }, ft.get "c")
 -- ft({ "toml", "graphql" }, "#%s")

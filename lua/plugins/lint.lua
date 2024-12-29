@@ -17,9 +17,7 @@ return {
         "--bbox-sys",
         "--bbox-unsup",
         "--lint-only",
-        "--relative-includes",
         "-f",
-        -- vim.fs.find("verilator.f", { upward = true, stop = vim.env.HOME })[1],
       }
       -- to allow other plugins to add linters to require('lint').linters_by_ft,
       -- instead set linters_by_ft like this:

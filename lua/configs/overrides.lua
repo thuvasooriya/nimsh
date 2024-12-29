@@ -10,6 +10,7 @@ M.nvimproject = {
     "~/dev/*dev/*",
     "~/dev/*",
     "~/dev/builds/vivado4mac/projects/*",
+    "~/Documents/stm32cubeide/*",
   },
   session_manager_opts = {
     autosave_ignore_dirs = {

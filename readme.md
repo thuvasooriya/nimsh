@@ -3,9 +3,11 @@
 	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
 	nimsh
 	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
+    
 </h2>
 
 <h6 align="center">
+  neovim integrated modular shell for hackers
   <a href="https://github.com/thuvasooriya/nimsh">/my neovim config/</a>
 </h6>
 
@@ -46,6 +48,9 @@ this config is pretty minimal (i guess) and focused on systems programming langu
 
 ## todo
 
+- [ ] keybind guides
+- [ ] language specific todos and ft plugins
+- [ ] suggestions
 - [ ] build tasks and test tasks easy implementation
 - [ ] typesetting configuration with latex and typst
 - [ ] propper snippets completion

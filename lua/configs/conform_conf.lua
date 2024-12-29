@@ -3,12 +3,12 @@ local options = {
 
   formatters_by_ft = {
     lua = { "stylua" },
-    javascript = { { "biome", "prettierd" } },
-    javascriptreact = { { "biome", "prettierd" } },
-    typescript = { { "biome", "prettierd" } },
-    typescriptreact = { { "biome", "prettierd" } },
-    json = { { "biome", "prettierd" } },
-    css = { { "biome", "prettierd" } },
+    javascript = { "biome" },
+    javascriptreact = { "biome" },
+    typescript = { "biome" },
+    typescriptreact = { "biome" },
+    json = { "biome" },
+    css = { "biome" },
     html = { "prettierd" },
     markdown = { "prettierd" },
     just = { "just" },
@@ -18,6 +18,9 @@ local options = {
     zig = { "zigfmt" },
     cpp = { "clang_format" },
     c = { "clang_format" },
+    ino = { "clang_format" },
+    arduino = { "clang_format" },
+    rust = { "rustfmt", lsp_format = "fallback" },
     nix = { "alejandra" },
     vhdl = { "vsg" },
     python = function(bufnr)
@@ -36,6 +39,9 @@ local options = {
   },
 
   format_on_save = function(bufnr)
+    if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+      return
+    end
     local disable_filetypes = { c = false, cpp = false, md = true }
     return {
       timeout_ms = 500,
@@ -45,4 +51,5 @@ local options = {
 
   notify_on_error = true,
 }
+
 return options

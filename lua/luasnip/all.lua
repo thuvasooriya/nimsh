@@ -1,4 +1,4 @@
-local ls = require("luasnip")
+local ls = require "luasnip"
 local s = ls.snippet
 local sn = ls.snippet_node
 local t = ls.text_node
@@ -17,8 +17,8 @@ local rep = require("luasnip.extras").rep
 -- )
 
 return {
-	s(
-		"hi", -- LuaSnip expands this to {trig = "hi"}
-		{ t("Hello, world!") }
-	),
+  s(
+    "hi", -- LuaSnip expands this to {trig = "hi"}
+    { t "Hello, world!" }
+  ),
 }

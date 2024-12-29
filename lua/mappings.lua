@@ -8,7 +8,9 @@ map("n", "<leader>rl", "<cmd>set rnu!<CR>", { desc = "toggle [r]e[l]ative number
 map("n", ";", ":", { desc = "enter command mode" })
 
 -- NOTE: [[ lsp ]]
-map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "lsp diagnostic loclist" })
+-- map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "lsp diagnostic loclist" })
+-- map("n", "<Leader>ii", vim.cmd "DiagnosticsToggleVirtualText", { noremap = true, silent = true })
+-- map("n", "<Leader>id", vim.cmd "DiagnosticsToggle", { noremap = true, silent = true })
 
 -- NOTE: [[ terminal ]]
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
