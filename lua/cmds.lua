@@ -1,32 +1,7 @@
 local autocmd = vim.api.nvim_create_autocmd
+local usercmd = vim.api.nvim_create_user_command
 
--- user event that loads after UIEnter + only if file buf is there
--- autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
---   group = vim.api.nvim_create_augroup("NvFilePost", { clear = true }),
---   callback = function(args)
---     local file = vim.api.nvim_buf_get_name(args.buf)
---     local buftype = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
---
---     if not vim.g.ui_entered and args.event == "UIEnter" then
---       vim.g.ui_entered = true
---     end
---
---     if file ~= "" and buftype ~= "nofile" and vim.g.ui_entered then
---       vim.api.nvim_exec_autocmds("User", { pattern = "FilePost", modeline = false })
---       vim.api.nvim_del_augroup_by_name "NvFilePost"
---
---       vim.schedule(function()
---         vim.api.nvim_exec_autocmds("FileType", {})
---
---         if vim.g.editorconfig then
---           require("editorconfig").config(args.buf)
---         end
---       end)
---     end
---   end,
--- })
-
-vim.api.nvim_create_user_command("FormatDisable", function(args)
+usercmd("FormatDisable", function(args)
   if args.bang then
     -- FormatDisable! will disable formatting just for this buffer
     vim.b.disable_autoformat = true
@@ -34,23 +9,24 @@ vim.api.nvim_create_user_command("FormatDisable", function(args)
     vim.g.disable_autoformat = true
   end
 end, {
-  desc = "Disable autoformat-on-save",
+  desc = "disable autoformat-on-save",
   bang = true,
 })
-vim.api.nvim_create_user_command("FormatEnable", function()
+
+usercmd("FormatEnable", function()
   vim.b.disable_autoformat = false
   vim.g.disable_autoformat = false
 end, {
-  desc = "Re-enable autoformat-on-save",
+  desc = "re-enable autoformat-on-save",
 })
 
-autocmd("TextYankPost", {
-  desc = "highlight when yanking (copying) text",
-  group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
+-- autocmd("TextYankPost", {
+--   desc = "highlight when yanking (copying) text",
+--   group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
+--   callback = function()
+--     vim.hl.on_yank()
+--   end,
+-- })
 
 local function escape_shell_arg(arg)
   return "'" .. string.gsub(arg, "'", "'\\''") .. "'"
@@ -120,12 +96,11 @@ local function preview_markdown()
   vim.fn.system(cmd)
 end
 
--- create a user command for markdown preview
-vim.api.nvim_create_user_command("MarkdownPreview", preview_markdown, {})
+usercmd("MarkdownPreview", preview_markdown, {})
 
 -- set up keybinding for markdown preview
 
-vim.api.nvim_set_keymap("n", "<leader>mp", ":MarkdownPreview<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<leader>mp", ":MarkdownPreview<CR>", { noremap = true, silent = true })
 
 -- optional: automatically set up for markdown files
 

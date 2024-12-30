@@ -7,7 +7,7 @@ local o = vim.o
 
 opt.number = true
 opt.termguicolors = true
--- opt.numberwidth = 2
+opt.numberwidth = 2
 -- opt.ruler = false
 -- opt.relativenumber = true
 opt.mouse = "a"
@@ -60,11 +60,3 @@ opt.shortmess:append "sI"
 -- when cursor reaches end/beginning of line
 opt.whichwrap:append "<>[]hl"
 vim.wo.wrap = true
-
--- local ft = require "Comment.ft"
-
--- ft.javascript = {'//%s', '/*%s*/'},
--- ft.yaml = '#%s',
--- ft.just = ft.get "make"
--- ft({ "go", "rust" }, ft.get "c")
--- ft({ "toml", "graphql" }, "#%s")

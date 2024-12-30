@@ -20,7 +20,7 @@ end
 ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
-local lazy_config = require "configs.lazy"
+local lazy_config = require "configs.lazy_config"
 require("lazy").setup({
   { import = "plugins" },
 }, lazy_config)
@@ -28,7 +28,7 @@ require("lazy").setup({
 vim.cmd.colorscheme "catppuccin"
 
 require "options"
-require "autocmds"
+require "cmds"
 
 vim.schedule(function()
   require "mappings"

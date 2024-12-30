@@ -16,7 +16,7 @@ return {
         opts = { history = true, updateevents = "TextChanged,TextChangedI", enable_autosnippets = true },
         config = function(_, opts)
           require("luasnip").config.set_config(opts)
-          require "configs.luasnip_conf"
+          require "configs.luasnip_config"
         end,
       },
 

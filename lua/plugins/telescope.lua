@@ -15,7 +15,7 @@ return {
     },
     cmd = "Telescope",
     opts = function()
-      return require "configs.telescope_conf"
+      return require "configs.telescope_config"
     end,
     config = function(_, opts)
       local telescope = require "telescope"
