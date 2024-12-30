@@ -4,7 +4,7 @@ return {
   "nvim-lua/plenary.nvim",
   require "plugins.motions",
   require "plugins.git",
-  require "plugins.completions",
+  require "plugins.cmp",
   require "plugins.telescope",
   require "plugins.lint",
   require "plugins.mini",
@@ -26,16 +26,29 @@ return {
     config = require("configs.alpha_config").setup,
   },
 
-  -- { -- scope indent lines
-  --   "lukas-reineke/indent-blankline.nvim",
-  --   event = "User FilePost",
-  -- },
+  { -- scope indent lines
+    "lukas-reineke/indent-blankline.nvim",
+    event = "User FilePost",
+    main = "ibl",
+    opts = {},
+  },
 
   { -- highlight todo, notes, etc in comments
     "folke/todo-comments.nvim",
     event = "VimEnter",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = { signs = true },
+  },
+
+  {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      options = {
+        theme = "catppuccin",
+      },
+    },
   },
 
   -- --------------------
@@ -76,16 +89,13 @@ return {
 
   {
     "neovim/nvim-lspconfig",
-    event = "User FilePost",
+    event = "VeryLazy",
+    -- event = "User FilePost",
     dependencies = {
-      { "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
-      "williamboman/mason-lspconfig.nvim",
-      "WhoIsSethDaniel/mason-tool-installer.nvim",
       { "j-hui/fidget.nvim", opts = {} }, -- useful status updates for lsp
-      "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
-      require("configs.lsp_config").config()
+      require "configs.lsp_config"
     end,
   },
 
@@ -132,7 +142,7 @@ return {
       return require "configs.oil_config"
     end,
     keys = {
-      { "-", "<cmd>Oil<cr>", desc = "open parent directory" },
+      { "-", "<cmd>Oil --float<cr>", desc = "open parent directory" },
     },
   },
 

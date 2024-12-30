@@ -16,7 +16,7 @@ return {
         opts = { history = true, updateevents = "TextChanged,TextChangedI", enable_autosnippets = true },
         config = function(_, opts)
           require("luasnip").config.set_config(opts)
-          require "configs.luasnip_config"
+          -- require "configs.luasnip_config"
         end,
       },
 
@@ -43,6 +43,9 @@ return {
         "hrsh7th/cmp-path",
       },
     },
+    opts = function()
+      return require "configs.cmp_config"
+    end,
     config = function(_, opts)
       require("cmp").setup(opts)
     end,

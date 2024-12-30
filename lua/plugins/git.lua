@@ -1,7 +1,7 @@
 return {
   {
     "lewis6991/gitsigns.nvim",
-    event = "User FilePost",
+    event = "VeryLazy",
     opts = {
       signs = {
         add = { text = "│" },
@@ -17,9 +17,9 @@ return {
           return { buffer = bufnr, desc = desc }
         end
         local map = vim.keymap.set
-        map("n", "<leader>rh", gs.reset_hunk, opts "Reset Hunk")
-        map("n", "<leader>ph", gs.preview_hunk, opts "Preview Hunk")
-        map("n", "<leader>gb", gs.blame_line, opts "Blame Line")
+        map("n", "<leader>ghr", gs.reset_hunk, opts "[r]eset [h]unk")
+        map("n", "<leader>ghp", gs.preview_hunk, opts "[p]review [h]unk")
+        map("n", "<leader>gbl", gs.blame_line, opts "[b]lame [l]ine")
       end,
     },
     config = function(_, opts)
