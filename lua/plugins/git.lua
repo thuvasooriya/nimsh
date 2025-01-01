@@ -22,9 +22,6 @@ return {
         map("n", "<leader>gbl", gs.blame_line, opts "[b]lame [l]ine")
       end,
     },
-    config = function(_, opts)
-      require("gitsigns").setup(opts)
-    end,
   },
   {
     "kdheepak/lazygit.nvim",

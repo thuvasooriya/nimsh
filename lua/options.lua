@@ -5,6 +5,10 @@ local o = vim.o
 -- :help vim.opt
 -- :help option-list
 
+if vim.g.neovide then
+  require "utils.neovide"
+end
+
 opt.number = true
 opt.termguicolors = true
 opt.numberwidth = 2
@@ -35,7 +39,6 @@ opt.scrolloff = 10
 opt.hlsearch = true
 
 opt.incsearch = true
-opt.termguicolors = true
 opt.hidden = true
 opt.backup = false
 opt.writebackup = false

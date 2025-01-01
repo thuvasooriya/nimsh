@@ -1,53 +1,53 @@
 return {
   {
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
-    dependencies = {
-      { -- snippet plugin
-        "L3MON4D3/LuaSnip",
-        dependencies = {
-          { -- `friendly-snippets` contains a variety of premade snippets.
-            "rafamadriz/friendly-snippets",
-            config = function()
-              require("luasnip.loaders.from_vscode").lazy_load()
-            end,
-          },
+    "saghen/blink.cmp",
+    dependencies = "rafamadriz/friendly-snippets",
+    version = "*",
+    opts = {
+      keymap = { preset = "default" }, -- super-tab // enter
+      completion = {
+        accept = { auto_brackets = { enabled = true } },
+        menu = {
+          -- winhighlight = "Normal:CmpPmenu,CursorLine:BlinkCmpMenuSelection,Search:None,FloatBorder:CmpBorder",
+          border = "rounded",
+          scrollbar = false,
+          -- draw = {},
         },
-        opts = { history = true, updateevents = "TextChanged,TextChangedI", enable_autosnippets = true },
-        config = function(_, opts)
-          require("luasnip").config.set_config(opts)
-          -- require "configs.luasnip_config"
-        end,
-      },
-
-      { -- autopairing of (){}[] etc
-        "windwp/nvim-autopairs",
-        opts = {
-          fast_wrap = {},
-          disable_filetype = { "TelescopePrompt", "vim" },
+        documentation = {
+          auto_show = true,
+          treesitter_highlighting = true,
+          window = { border = "rounded" },
         },
-        config = function(_, opts)
-          require("nvim-autopairs").setup(opts)
-
-          -- setup cmp for autopairs
-          local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-          require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-        end,
+        list = {
+          selection = function(ctx)
+            return ctx.mode == "cmdline" and "auto_insert" or "preselect"
+          end,
+        },
       },
-
-      { -- cmp sources plugins
-        "saadparwaiz1/cmp_luasnip",
-        "hrsh7th/cmp-nvim-lua",
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
+      appearance = {
+        use_nvim_cmp_as_default = true,
+        nerd_font_variant = "mono",
       },
+      sources = {
+        default = { "lsp", "path", "snippets", "buffer" },
+      },
+      signature = { enabled = true, window = { border = "rounded" } },
     },
-    opts = function()
-      return require "configs.cmp_config"
-    end,
-    config = function(_, opts)
-      require("cmp").setup(opts)
-    end,
+    opts_extend = { "sources.default" },
+  },
+  { -- autopairing of (){}[] etc
+    "windwp/nvim-autopairs",
+    event = "VeryLazy",
+    opts = {
+      fast_wrap = {},
+      disable_filetype = { "TelescopePrompt", "vim" },
+    },
+  },
+  { -- cmp sources plugins
+    "saadparwaiz1/cmp_luasnip",
+    "hrsh7th/cmp-nvim-lua",
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
   },
 }

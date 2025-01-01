@@ -15,9 +15,7 @@ map("n", ";", ":", { desc = "enter command mode" })
 -- NOTE: [[ terminal ]]
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "exit terminal mode" })
--- map({ "n", "t" }, "<C-`>", function()
---   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
--- end, { desc = "terminal new horizontal term" })
+map({ "n", "t" }, "<C-`>", "<cmd>Fterm<CR>", { desc = "terminal toggle" })
 
 -- NOTE: [[ navigation ]]
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })

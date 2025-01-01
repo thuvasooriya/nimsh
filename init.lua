@@ -1,7 +1,5 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
--- disable some default providers
 vim.g.loaded_node_provider = 0
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_perl_provider = 0
@@ -27,8 +25,11 @@ require("lazy").setup({
 vim.cmd.colorscheme "catppuccin"
 
 require "options"
-require "cmds"
 
 vim.schedule(function()
+  require "cmds"
   require "mappings"
 end)
+
+vim.o.statusline = "%!v:lua.require('utils.stl.minimal')()"
+require("utils.stl.utils").autocmds()

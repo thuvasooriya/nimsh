@@ -2,23 +2,15 @@ local overrides = require "configs.overrides"
 
 return {
   "nvim-lua/plenary.nvim",
+  require "plugins.theme",
+  require "plugins.lsp",
   require "plugins.motions",
   require "plugins.git",
   require "plugins.cmp",
   require "plugins.telescope",
-  require "plugins.lint",
-  require "plugins.mini",
   -- --------------------
   -- ui stuff
   -- --------------------
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
-    opts = function()
-      return require "configs.catppuccin_config"
-    end,
-  },
 
   { -- dashboard
     "goolord/alpha-nvim",
@@ -38,17 +30,6 @@ return {
     event = "VimEnter",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = { signs = true },
-  },
-
-  {
-    "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-      options = {
-        theme = "catppuccin",
-      },
-    },
   },
 
   -- --------------------
@@ -71,31 +52,6 @@ return {
       --    - incremental selection: included, see `:help nvim-treesitter-incremental-selection-mod`
       --    - show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
       --    - treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-    end,
-  },
-
-  {
-    "folke/lazydev.nvim",
-    ft = "lua",
-    dependencies = {
-      { "Bilal2453/luvit-meta", lazy = true },
-    },
-    opts = {
-      library = {
-        { path = "luvit-meta/library", words = { "vim%.uv" } },
-      },
-    },
-  },
-
-  {
-    "neovim/nvim-lspconfig",
-    event = "VeryLazy",
-    -- event = "User FilePost",
-    dependencies = {
-      { "j-hui/fidget.nvim", opts = {} }, -- useful status updates for lsp
-    },
-    config = function()
-      require "configs.lsp_config"
     end,
   },
 
@@ -142,7 +98,7 @@ return {
       return require "configs.oil_config"
     end,
     keys = {
-      { "-", "<cmd>Oil --float<cr>", desc = "open parent directory" },
+      { "-", "<cmd>Oil<cr>", desc = "open parent directory" },
     },
   },
 
