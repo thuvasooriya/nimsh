@@ -1,13 +1,5 @@
 return {
   "nvim-lua/plenary.nvim",
-  require "plugins.theme",
-  require "plugins.lsp",
-  require "plugins.snacks",
-  require "plugins.cmp",
-
-  -- --------------------
-  -- treesitter n lsp stuff
-  -- --------------------
   {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPost", "BufNewFile" },
@@ -100,6 +92,7 @@ return {
         nix = { "alejandra" },
         asm = { "asmfmt" },
         -- vhdl = { "vsg" },
+        -- TODO: cleanup
         python = function(bufnr)
           if require("conform").get_formatter_info("ruff_format", bufnr).available then
             return { "ruff_format", "ruff_fix", "ruff_organize_imports" }
@@ -107,7 +100,6 @@ return {
             return { "isort", "black" }
           end
         end,
-        -- tex = { "latexindent" },
         verilog = { "verible" },
         systemverilog = { "verible" },
       },
@@ -126,46 +118,14 @@ return {
       end,
       notify_on_error = true,
     },
-    -- event = "BufWritePre",
   },
 
-  { -- keyboard hint
-    "folke/which-key.nvim",
-    event = "VimEnter",
-    keys = { "<leader>", "<c-r>", "<c-w>", '"', "'", "`", "c", "v", "g" },
-    cmd = "WhichKey",
-    config = function(_, opts)
-      require("which-key").setup(opts)
-    end,
-  },
-  -- --------------------
-  -- files
-  -- --------------------
   {
     "stevearc/oil.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     lazy = false,
+    -- TODO: cleanup
     opts = {
-      columns = {
-        "icon",
-        -- "permissions",
-        "size",
-        -- "mtime",
-      },
-      buf_options = {
-        buflisted = false,
-        bufhidden = "hide",
-      },
-      win_options = {
-        wrap = false,
-        signcolumn = "no",
-        cursorcolumn = false,
-        foldcolumn = "0",
-        spell = false,
-        list = false,
-        conceallevel = 3,
-        concealcursor = "nvic",
-      },
       delete_to_trash = true,
       skip_confirm_for_simple_edits = true,
       prompt_save_on_select_new_entry = true,

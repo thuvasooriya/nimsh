@@ -47,9 +47,10 @@ this config is pretty minimal (i guess) and focused on systems programming langu
 
 ## todo
 
-- [ ] minimal statusline kindly stolen from nvchad
-- [ ] luasnip and snippets config
-- [ ] build tasks and test tasks easy implementation, codeblock exec
+- [ ] snippets config
+- [ ] just command runner
+- [ ] tasks runner
+- [ ] codeblock execution
 - [ ] typesetting configuration with latex and typst: mupdf?
 - [ ] python testing
   - [ ] ruff lsp integration
@@ -58,7 +59,7 @@ this config is pretty minimal (i guess) and focused on systems programming langu
   - [ ] clang-format fix for platformio
   - [ ] some assembly utils
 - [ ] move markdown preview and command runners in the name of matilda.nvim
-- [ ] open notebooks in browser
+- [ ] notebooks in browser
 - [ ] test it in linux
 - [ ] luarocks?
 
@@ -80,6 +81,7 @@ this config is pretty minimal (i guess) and focused on systems programming langu
 - [x] proper spell checks
 - [x] snacks.nvim integration
 - [x] veridian config
+- [x] minimal statusline
 
 ## ack
 

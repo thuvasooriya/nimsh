@@ -66,9 +66,9 @@ require("lazy").setup {
 
 vim.cmd.colorscheme "catppuccin"
 
-require "options"
+require "utils.options"
 
 vim.schedule(function()
-  require "cmds"
-  require "mappings"
+  require "utils.cmds"
+  require "utils.mappings"
 end)

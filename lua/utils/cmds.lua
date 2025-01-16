@@ -1,6 +1,5 @@
 local autocmd = vim.api.nvim_create_autocmd
 local usercmd = vim.api.nvim_create_user_command
-require "utils.fterm"
 require "utils.mdpreview"
 
 usercmd("FormatDisable", function(args)

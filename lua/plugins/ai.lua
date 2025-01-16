@@ -3,13 +3,13 @@ return {
     "yetone/avante.nvim",
     event = "VeryLazy",
     lazy = false,
-    -- version = false,
-    version = "*",
+    version = "*", -- use false for release version
     opts = {
       provider = "copilot",
+      -- FIX: copilot not working with avante
+      -- using copilot.lua instead
       -- auto_suggestions_provider = "copilot",
       copilot = { model = "claude-3.5-sonnet" },
-      -- hints = { enabled = false },
       behaviour = {
         auto_suggestions = false,
         auto_set_highlight_group = true,
@@ -18,10 +18,6 @@ return {
         support_paste_from_clipboard = true,
         minimize_diff = true,
       },
-      -- file_selector = {
-      --   provider = "fzf",
-      --   provider_opts = {},
-      -- },
     },
     build = "make",
     dependencies = {
@@ -43,9 +39,6 @@ return {
           },
         },
       },
-      --- The below dependencies are optional,
-      -- "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-      -- "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
       {
         "HakonHarnes/img-clip.nvim",
         event = "VeryLazy",

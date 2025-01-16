@@ -2,7 +2,7 @@ return {
   {
     "folke/snacks.nvim",
     dependencies = {
-      { -- highlight todo, notes, etc in comments
+      {
         "folke/todo-comments.nvim",
         event = "VimEnter",
         dependencies = { "nvim-lua/plenary.nvim" },
@@ -13,6 +13,7 @@ return {
         event = "BufReadPre",
         opts = {},
       },
+      "folke/which-key.nvim",
     },
     priority = 1000,
     lazy = false,
@@ -31,7 +32,7 @@ return {
         },
         sections = {
           { section = "terminal", cmd = "~/.config/nvim/logo.sh -c", height = 10, align = "center", padding = 1 },
-          { section = "keys", padding = 1 },
+          { section = "keys", padding = 2, gap = 1 },
           { section = "startup" },
         },
       },
@@ -60,8 +61,9 @@ return {
       scratch = {
         name = "scratch",
         filekey = {
-          cwd = false, -- use current working directory
-          branch = false, -- use current branch name
+          -- FIX: filekey generated is very large to use with command runners
+          cwd = false,
+          branch = false,
           count = false, -- use vim.v.count1
         },
         win_by_ft = {
