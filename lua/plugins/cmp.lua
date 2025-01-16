@@ -3,6 +3,7 @@ return {
     "saghen/blink.cmp",
     dependencies = {
       "rafamadriz/friendly-snippets",
+      { "saghen/blink.compat", lazy = true, config = true },
       -- "saadparwaiz1/cmp_luasnip",
       -- "hrsh7th/cmp-nvim-lua",
       -- "hrsh7th/cmp-nvim-lsp",
@@ -30,14 +31,42 @@ return {
         --     return ctx.mode == "cmdline" and "auto_insert" or "preselect"
         --   end,
         -- },
+        -- require
       },
       appearance = {
         use_nvim_cmp_as_default = true,
         nerd_font_variant = "mono",
       },
       sources = {
-        default = { "lsp", "path", "snippets", "buffer" },
-        providers = {},
+        default = {
+          "lsp",
+          "path",
+          "snippets",
+          "buffer",
+          "avante_commands",
+          "avante_mentions",
+          "avante_files",
+        },
+        providers = {
+          avante_commands = {
+            name = "avante_commands",
+            module = "blink.compat.source",
+            score_offset = 90, -- show at a higher priority than lsp
+            opts = {},
+          },
+          avante_files = {
+            name = "avante_commands",
+            module = "blink.compat.source",
+            score_offset = 100, -- show at a higher priority than lsp
+            opts = {},
+          },
+          avante_mentions = {
+            name = "avante_mentions",
+            module = "blink.compat.source",
+            score_offset = 1000, -- show at a higher priority than lsp
+            opts = {},
+          },
+        },
       },
       signature = { enabled = true, window = { border = "rounded" } },
     },
