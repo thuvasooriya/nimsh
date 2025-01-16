@@ -34,7 +34,6 @@ return {
     },
     custom_highlights = function(colors)
       return {
-        -- Statusline highlights
         Stl_Lsp = { fg = colors.green },
         Stl_normalmode = { fg = colors.blue },
         Stl_insertmode = { fg = colors.green },
@@ -42,7 +41,7 @@ return {
         Stl_commandmode = { fg = colors.mauve },
         Stl_Text = { fg = colors.text },
         Stl_Cwd = { fg = colors.flamingo },
-        Stl_gitIcons = { fg = colors.teal },
+        Stl_gitIcons = { fg = colors.mauve },
         Stl_file = { fg = colors.lavender },
         Stl_LspMsg = { fg = colors.yellow },
         Stl_PosText = { fg = colors.pink },
@@ -53,6 +52,7 @@ return {
       blink_cmp = true,
       gitsigns = true,
       treesitter = true,
+      leap = true,
     },
   },
 }

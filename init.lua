@@ -72,6 +72,3 @@ vim.schedule(function()
   require "cmds"
   require "mappings"
 end)
-
-vim.o.statusline = "%!v:lua.require('utils.stl.minimal')()"
-require("utils.stl.utils").autocmds()

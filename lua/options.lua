@@ -1,7 +1,5 @@
 local opt = vim.opt
 local o = vim.o
-
---  NOTE:
 -- :help vim.opt
 -- :help option-list
 
@@ -43,20 +41,19 @@ opt.hidden = true
 opt.backup = false
 opt.writebackup = false
 opt.swapfile = false
--- opt.laststatus = 3
+opt.laststatus = 3
 -- opt.pumheight = 10
 opt.sidescrolloff = 3
 
-o.laststatus = 3
 o.cursorlineopt = "number"
 o.expandtab = true
 o.shiftwidth = 2
 -- o.smartindent = true
 o.tabstop = 2
 o.softtabstop = 2
---
+o.statusline = "%!v:lua.require('utils.stl').get_statusline()"
+
 -- opt.fillchars = { eob = " " }
---
 -- disable nvim intro
 opt.shortmess:append "sI"
 -- go to previous/next line with h,l,left arrow and right arrow
