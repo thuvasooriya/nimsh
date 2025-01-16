@@ -7,11 +7,6 @@ return {
     transparent_background = false, -- disables setting the background color.
     show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
     term_colors = true, -- sets terminal colors (e.g. `g:terminal_color_0`)
-    dim_inactive = {
-      enabled = false, -- dims the background color of inactive window
-      shade = "dark",
-      percentage = 0.15, -- percentage of the shade to apply to the inactive window
-    },
     no_italic = false, -- Force no italic
     no_bold = false, -- Force no bold
     no_underline = false, -- Force no underline
@@ -32,8 +27,8 @@ return {
     },
     color_overrides = {
       mocha = {
-        -- mantle = "#000000",
         base = "#11111b",
+        mantle = "#11111b",
         -- crust = "#11111b",
       },
     },
@@ -55,7 +50,6 @@ return {
     end,
     default_integrations = true,
     integrations = {
-      -- cmp = true,
       blink_cmp = true,
       gitsigns = true,
       treesitter = true,

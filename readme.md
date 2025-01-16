@@ -3,7 +3,7 @@
 	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
 	nimsh
 	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
-    
+
 </h2>
 
 <h6 align="center">
@@ -33,14 +33,13 @@
 </p>
 
 <p align="center">
-hi there! this is my neovim config, my config began as a starter config to nvchad
-and then i stopped and learned neovim again with kikstarter template and then integrated them both.
+hi there! this is my neovim config, my config began as a starter config to nvchad and then i stopped and learned neovim again with kikstarter template and then integrated them both.
 i personally use nix on my system and this config is in a way that it uses nix to install all the packages required by neovim instead of mason (i'm still on the fence about this one, classic determinism vs flexibility debate).
 this config is pretty minimal (i guess) and focused on systems programming languages, hardware description languages and embedded development. with some flare for markdown writing utilities.
 </p>
 
-> under development and bugs are expected, issues are welcome
-> p.s. and yup that's the catppuccin logo, will draw something out when time permits
+> under development and bugs are expected, issues are welcome p.s. and yup
+> that's the catppuccin logo, will draw something out when time permits
 
 <p align="center">
   <img src="https://i.imgur.com/BEkvBBW.png" />
@@ -50,38 +49,40 @@ this config is pretty minimal (i guess) and focused on systems programming langu
 
 - [ ] minimal statusline kindly stolen from nvchad
 - [ ] luasnip and snippets config
-- [ ] remove configs directory
-- [ ] get rid of alpha.nvim?
-- [ ] proper spell checks
 - [ ] build tasks and test tasks easy implementation, codeblock exec
 - [ ] typesetting configuration with latex and typst: mupdf?
 - [ ] python testing
-    - [ ] ruff lsp integration
-    - [ ] venv loader
+  - [ ] ruff lsp integration
+  - [ ] venv loader
 - [ ] c/c++ testing
-    - [ ] clang-format fix for platformio
-    - [ ] some assembly utils
+  - [ ] clang-format fix for platformio
+  - [ ] some assembly utils
 - [ ] move markdown preview and command runners in the name of matilda.nvim
 - [ ] open notebooks in browser
 - [ ] test it in linux
 - [ ] luarocks?
 
-## memo
+## useful patterns to remember
 
-- use `:qa` or `:qwa` to quit to terminal easily closing all buffers especially when nvimtree is open
 - `:%s@search@replace@gc` for search and replace with confirmation
 
 ## done
 
 - [x] github markdown preview `<leader>mp`
-- [x] ~move to version 10~ flying on nightly
-- [x] ~remapping J and K to faster movement~ using default bindings and leap plugin
-- [x] ~partial integration with vscode~ keeping vscode neovim config separate
+- [x] ~~move to version 10~~ flying on nightly
+- [x] ~~remapping J and K to faster movement~~ using default bindings and leap
+      plugin
+- [x] ~~partial integration with vscode~~ keeping vscode neovim config separate
 - [x] setup nix formatting using alejandra
 - [x] nix compatibility to lsp and my workflow
+- [x] remove configs directory
+- [x] get rid of alpha.nvim?
+- [x] proper spell checks
+- [x] snacks.nvim integration
+- [x] veridian config
 
 ## ack
 
-- nvchad for base46
 - tj for the awesome tutorials and kikstarter.nvim
 - prime for his stunning personality
+- awesome plugins from all the awesome people

@@ -1,7 +1,14 @@
 return {
   {
     "saghen/blink.cmp",
-    dependencies = "rafamadriz/friendly-snippets",
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+      -- "saadparwaiz1/cmp_luasnip",
+      -- "hrsh7th/cmp-nvim-lua",
+      -- "hrsh7th/cmp-nvim-lsp",
+      -- "hrsh7th/cmp-buffer",
+      -- "hrsh7th/cmp-path",
+    },
     version = "*",
     opts = {
       keymap = { preset = "default" }, -- super-tab // enter
@@ -30,13 +37,7 @@ return {
       },
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },
-        providers = {
-          markdown = {
-            name = "RenderMarkdown",
-            module = "render-markdown.integ.blink",
-            fallbacks = { "lsp" },
-          },
-        },
+        providers = {},
       },
       signature = { enabled = true, window = { border = "rounded" } },
     },
@@ -49,12 +50,5 @@ return {
       fast_wrap = {},
       disable_filetype = { "TelescopePrompt", "vim" },
     },
-  },
-  { -- cmp sources plugins
-    "saadparwaiz1/cmp_luasnip",
-    "hrsh7th/cmp-nvim-lua",
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
   },
 }

@@ -1,4 +1,5 @@
 return {
+
   {
     "folke/lazydev.nvim",
     ft = "lua",
@@ -11,6 +12,7 @@ return {
       },
     },
   },
+
   {
     "neovim/nvim-lspconfig",
     event = "VeryLazy",

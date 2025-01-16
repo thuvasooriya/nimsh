@@ -17,7 +17,7 @@ opt.numberwidth = 2
 opt.mouse = "a"
 opt.showmode = false
 opt.clipboard = "unnamedplus"
-opt.breakindent = true
+-- opt.breakindent = true
 opt.undofile = true
 opt.ignorecase = true
 opt.smartcase = true
@@ -51,7 +51,7 @@ o.laststatus = 3
 o.cursorlineopt = "number"
 o.expandtab = true
 o.shiftwidth = 2
-o.smartindent = true
+-- o.smartindent = true
 o.tabstop = 2
 o.softtabstop = 2
 --
