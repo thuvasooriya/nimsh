@@ -1,4 +1,8 @@
 local options = {
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
   ensure_installed = {
     -- vim stuff
     "vim",
@@ -44,11 +48,11 @@ local options = {
   -- sync_install = true,
   auto_install = false,
 
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = { "ruby" },
-  },
-  indent = { enable = true, disable = { "ruby" } },
+  -- highlight = {
+  --   enable = true,
+  --   additional_vim_regex_highlighting = { "ruby" },
+  -- },
+  -- indent = { enable = true, disable = { "ruby" } },
 }
 
 return options

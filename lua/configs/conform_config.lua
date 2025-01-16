@@ -10,7 +10,7 @@ local options = {
     json = { "biome" },
     css = { "biome" },
     html = { "prettierd" },
-    markdown = { "prettierd" },
+    markdown = { "deno_fmt" },
     just = { "just" },
     sh = { "shfmt" },
     bash = { "shfmt" },
@@ -22,6 +22,7 @@ local options = {
     arduino = { "clang_format" },
     rust = { "rustfmt", lsp_format = "fallback" },
     nix = { "alejandra" },
+    asm = { "asmfmt" },
     -- vhdl = { "vsg" },
     python = function(bufnr)
       if require("conform").get_formatter_info("ruff_format", bufnr).available then
