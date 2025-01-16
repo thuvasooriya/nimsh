@@ -48,24 +48,22 @@ this config is pretty minimal (i guess) and focused on systems programming langu
 
 ## todo
 
-- [ ] keybind guides
-- [ ] language specific todos and ft plugins
-- [ ] suggestions
-- [ ] build tasks and test tasks easy implementation
-- [ ] typesetting configuration with latex and typst
-- [ ] propper snippets completion
-- [ ] cleanup lsp config
-- [ ] ruff lsp integration
-- [ ] clang-format fix for platformio
-- [ ] move markdown preview to matilda plugin
-- [ ] propper verilator linting
-- [ ] editor.fs cleanup
-- [ ] trim down nvchad ui plugin
-  - [ ] remove tabufline
-  - [ ] modify statusline to be more minimal
+- [ ] minimal statusline kindly stolen from nvchad
+- [ ] luasnip and snippets config
+- [ ] remove configs directory
+- [ ] get rid of alpha.nvim?
+- [ ] proper spell checks
+- [ ] build tasks and test tasks easy implementation, codeblock exec
+- [ ] typesetting configuration with latex and typst: mupdf?
+- [ ] python testing
+    - [ ] ruff lsp integration
+    - [ ] venv loader
+- [ ] c/c++ testing
+    - [ ] clang-format fix for platformio
+    - [ ] some assembly utils
+- [ ] move markdown preview and command runners in the name of matilda.nvim
 - [ ] open notebooks in browser
 - [ ] test it in linux
-- [ ] implement dap - low priority
 - [ ] luarocks?
 
 ## memo

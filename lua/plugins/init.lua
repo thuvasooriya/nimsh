@@ -4,6 +4,7 @@ return {
   "nvim-lua/plenary.nvim",
   require "plugins.theme",
   require "plugins.lsp",
+  require "plugins.snacks",
   require "plugins.motions",
   require "plugins.git",
   require "plugins.cmp",
@@ -18,12 +19,12 @@ return {
     config = require("configs.alpha_config").setup,
   },
 
-  { -- scope indent lines
-    "lukas-reineke/indent-blankline.nvim",
-    event = "User FilePost",
-    main = "ibl",
-    opts = {},
-  },
+  -- { -- scope indent lines
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   event = "User FilePost",
+  --   main = "ibl",
+  --   opts = {},
+  -- },
 
   { -- highlight todo, notes, etc in comments
     "folke/todo-comments.nvim",
@@ -116,5 +117,11 @@ return {
     },
     lazy = false,
     priority = 100,
+  },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+    ---@module 'render-markdown'
+    opts = {},
   },
 }

@@ -6,6 +6,20 @@ vim.g.neovide_padding_bottom = 5
 vim.g.neovide_padding_right = 5
 vim.g.neovide_padding_left = 8
 
+vim.g.neovide_scale_factor = 1.0
+local change_scale_factor = function(delta)
+  vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+end
+vim.keymap.set("n", "<D-=>", function()
+  change_scale_factor(1.1)
+end)
+vim.keymap.set("n", "<D-->", function()
+  change_scale_factor(0.9)
+end)
+vim.keymap.set("n", "<D-0>", function()
+  vim.g.neovide_scale_factor = 1.0
+end)
+
 vim.g.neovide_floating_shadow = false
 -- vim.g.neovide_cursor_animate_command_line = false
 
