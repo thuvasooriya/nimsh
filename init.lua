@@ -6,6 +6,8 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.have_nerd_font = true
 
+require "utils.options"
+
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
 ---@diagnostic disable-next-line: undefined-field
@@ -65,9 +67,6 @@ require("lazy").setup {
 }
 
 vim.cmd.colorscheme "catppuccin"
-
-require "utils.options"
-
 vim.schedule(function()
   require "utils.cmds"
   require "utils.mappings"

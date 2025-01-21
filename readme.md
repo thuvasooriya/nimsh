@@ -63,6 +63,14 @@ this config is pretty minimal (i guess) and focused on systems programming langu
 - [ ] test it in linux
 - [ ] luarocks?
 
+## focus
+
+- c, cpp, zig, rust?
+- verilog, systemverilog
+- python
+- javascript, astro, svelte
+- markdown, typst, latex?
+
 ## useful patterns to remember
 
 - `:%s@search@replace@gc` for search and replace with confirmation

@@ -6,6 +6,8 @@ local o = vim.o
 if vim.g.neovide then
   require "utils.neovide"
 end
+o.statusline = "%!v:lua.require('utils.stl').get_statusline()"
+o.cmdheight = 0
 
 opt.number = true
 opt.termguicolors = true
@@ -51,7 +53,6 @@ o.shiftwidth = 2
 -- o.smartindent = true
 o.tabstop = 2
 o.softtabstop = 2
-o.statusline = "%!v:lua.require('utils.stl').get_statusline()"
 
 -- opt.fillchars = { eob = " " }
 -- disable nvim intro
