@@ -3,24 +3,18 @@ return {
     "saghen/blink.cmp",
     dependencies = {
       "rafamadriz/friendly-snippets",
+      "Kaiser-Yang/blink-cmp-avante",
       { "saghen/blink.compat", lazy = true, config = true },
-      -- FIX: proper blink.cmp sources
-      -- "saadparwaiz1/cmp_luasnip",
-      -- "hrsh7th/cmp-nvim-lua",
-      -- "hrsh7th/cmp-nvim-lsp",
-      -- "hrsh7th/cmp-buffer",
-      -- "hrsh7th/cmp-path",
     },
-    version = "*",
+    version = "1.*",
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
     opts = {
       keymap = { preset = "default" }, -- super-tab // enter
       completion = {
         accept = { auto_brackets = { enabled = true } },
         menu = {
-          winhighlight = "Normal:NormalFloat,CursorLine:BlinkCmpMenuSelection,Search:None,FloatBorder:CmpBorder",
-          border = "rounded",
-          scrollbar = false,
-          -- draw = {},
+          winhighlight = "Normal:Normal,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
         },
         documentation = {
           auto_show = true,
@@ -29,36 +23,21 @@ return {
         },
       },
       appearance = {
-        use_nvim_cmp_as_default = true,
+        -- use_nvim_cmp_as_default = true,
         nerd_font_variant = "mono",
       },
       sources = {
         default = {
+          "avante",
           "lsp",
           "path",
           "snippets",
           "buffer",
-          "avante_commands",
-          "avante_mentions",
-          "avante_files",
         },
         providers = {
-          avante_commands = {
-            name = "avante_commands",
-            module = "blink.compat.source",
-            score_offset = 90,
-            opts = {},
-          },
-          avante_files = {
-            name = "avante_commands",
-            module = "blink.compat.source",
-            score_offset = 100,
-            opts = {},
-          },
-          avante_mentions = {
-            name = "avante_mentions",
-            module = "blink.compat.source",
-            score_offset = 1000,
+          avante = {
+            module = "blink-cmp-avante",
+            name = "Avante",
             opts = {},
           },
         },
@@ -73,6 +52,12 @@ return {
     opts = {
       fast_wrap = {},
       disable_filetype = { "vim" },
+    },
+  },
+  {
+    "stevearc/overseer.nvim",
+    opts = {
+      templates = { "builtin" },
     },
   },
 }

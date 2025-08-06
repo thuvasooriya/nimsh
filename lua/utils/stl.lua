@@ -138,7 +138,7 @@ M.lsp = function()
 
   for _, client in ipairs(vim.lsp.get_clients()) do
     if client.attached_buffers[M.stbufnr()] then
-      local lsp_string = (vim.o.columns > 100 and "   LSP ~ " .. client.name .. " ") or "   LSP "
+      local lsp_string = (vim.o.columns > 100 and "   " .. client.name .. " ") or "   "
       return "%#Stl_Lsp#" .. lsp_string
     end
   end

@@ -44,6 +44,13 @@ return {
         "c",
         "zig",
         "arduino",
+        -- typeset
+        "latex",
+        "typst",
+        "vue",
+        "scss",
+        "norg",
+        "regex",
         -- mrk
         "markdown",
         "markdown_inline",
@@ -66,6 +73,13 @@ return {
   },
 
   {
+    "fei6409/log-highlight.nvim",
+    config = function()
+      require("log-highlight").setup {}
+    end,
+  },
+
+  {
     "stevearc/conform.nvim",
     opts = {
       lsp_fallback = true,
@@ -78,7 +92,8 @@ return {
         json = { "biome" },
         css = { "biome" },
         html = { "prettierd" },
-        markdown = { "deno_fmt" },
+        markdown = { "prettierd" },
+        astro = { "prettierd" },
         just = { "just" },
         sh = { "shfmt" },
         bash = { "shfmt" },
@@ -91,15 +106,10 @@ return {
         rust = { "rustfmt", lsp_format = "fallback" },
         nix = { "alejandra" },
         asm = { "asmfmt" },
-        -- vhdl = { "vsg" },
+        typst = { "typstyle" },
+        vhdl = { "vsg" },
         -- TODO: cleanup
-        python = function(bufnr)
-          if require("conform").get_formatter_info("ruff_format", bufnr).available then
-            return { "ruff_format", "ruff_fix", "ruff_organize_imports" }
-          else
-            return { "isort", "black" }
-          end
-        end,
+        python = { "ruff_format", "ruff_fix", "ruff_organize_imports" },
         verilog = { "verible" },
         systemverilog = { "verible" },
       },
@@ -112,7 +122,7 @@ return {
         end
         local disable_filetypes = { c = false, cpp = false, md = true }
         return {
-          timeout_ms = 500,
+          timeout_ms = 2500,
           lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
         }
       end,
@@ -126,6 +136,7 @@ return {
     lazy = false,
     -- TODO: cleanup
     opts = {
+      -- default_file_explorer = false,
       delete_to_trash = true,
       skip_confirm_for_simple_edits = true,
       prompt_save_on_select_new_entry = true,

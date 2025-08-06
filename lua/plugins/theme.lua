@@ -9,16 +9,16 @@ return {
     term_colors = true,
     styles = {
       comments = { "italic" },
-      conditionals = { "italic" },
-      loops = { "italic" },
+      -- conditionals = { "italic" },
+      -- loops = { "italic" },
       functions = { "bold", "italic" },
       keywords = { "bold" },
-      strings = { "italic" },
+      -- strings = { "italic" },
       variables = {},
       numbers = {},
       booleans = { "bold" },
       properties = {},
-      types = { "underline" },
+      types = { "italic" },
       operators = {},
       -- miscs = {}, -- uncomment to turn off hard-coded styles
     },
@@ -49,6 +49,10 @@ return {
       gitsigns = true,
       treesitter = true,
       leap = true,
+      snacks = {
+        enabled = true,
+        indent_scope_color = "lavender",
+      },
     },
   },
 }

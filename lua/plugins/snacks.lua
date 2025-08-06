@@ -20,23 +20,11 @@ return {
     opts = {
       animate = { enabled = true },
       bigfile = { enabled = true },
-      dashboard = {
-        width = 70,
-        preset = {
-          keys = {
-            { icon = " ", key = "p", desc = "projects", action = ":lua Snacks.picker.projects()" },
-            { icon = " ", key = "d", desc = "navigate", action = ":lua Snacks.picker.zoxide()" },
-            { icon = " ", key = "s", desc = "restore session", section = "session" },
-            { icon = " ", key = "q", desc = "quit", action = ":qa" },
-          },
-        },
-        sections = {
-          { section = "terminal", cmd = "~/.config/nvim/logo.sh -c", height = 10, align = "center", padding = 1 },
-          { section = "keys", padding = 2, gap = 1 },
-          { section = "startup" },
-        },
-      },
+      image = { enabled = true },
+      explorer = { enabled = true },
+      dashboard = { enabled = false },
       indent = { enabled = true, only_scope = true },
+      scope = { enabled = true },
       input = { enabled = true },
       notifier = { enabled = true, timeout = 3000 },
       lazygit = {
@@ -55,19 +43,27 @@ return {
       words = { enabled = true },
       styles = {
         notification = { wo = { wrap = true } },
+        terminal = {
+          border = "rounded",
+        },
       },
       toggle = {},
       picker = {},
       scratch = {
-        name = "scratch",
-        filekey = {
-          -- FIX: filekey generated is very large to use with command runners
-          cwd = false,
-          branch = false,
-          count = false, -- use vim.v.count1
-        },
         win_by_ft = {
-          -- TODO: implement file runners for c, cpp, zig and python
+          lua = {
+            keys = {
+              ["source"] = {
+                "<cr>",
+                function(self)
+                  local name = "scratch." .. vim.fn.fnamemodify(vim.api.nvim_buf_get_name(self.buf), ":e")
+                  Snacks.debug.run { buf = self.buf, name = name }
+                end,
+                desc = "Source buffer",
+                mode = { "n", "x" },
+              },
+            },
+          },
         },
       },
     },
@@ -216,16 +212,23 @@ return {
       {
         "<leader><space>",
         function()
-          Snacks.picker.grep()
+          Snacks.picker.resume()
         end,
-        desc = "grep",
+        desc = "search resume",
       },
       {
-        "<leader>;",
+        "<leader>ch",
         function()
           Snacks.picker.command_history()
         end,
         desc = "command history",
+      },
+      {
+        "<leader>e",
+        function()
+          Snacks.picker.explorer()
+        end,
+        desc = "explorer",
       },
       {
         "<leader>fb",
